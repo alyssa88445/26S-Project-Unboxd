@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, current_app
 from backend.db_connection import get_db
 from mysql.connector import Error
 
-# Create a Blueprint for NGO routes
+# Create a Blueprint for artist routes
 artists = Blueprint("artists", __name__)
 
 # GET /artists - list all artists with verification status 
