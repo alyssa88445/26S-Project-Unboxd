@@ -9,6 +9,7 @@ CREATE TABLE `user` (
     last_name   VARCHAR(100) NOT NULL,
     phone       VARCHAR(20),
     bio         VARCHAR(255),
+    street_address VARCHAR(255),
     city        VARCHAR(100),
     state       VARCHAR(100),
     role        VARCHAR(50) NOT NULL DEFAULT 'user',
@@ -101,7 +102,7 @@ CREATE TABLE `order` (
     order_time  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status ENUM('in cart', 'purchased', 'processing', 'shipped') NOT NULL,
     buyer_id    INT UNSIGNED NOT NULL,
-    order_total FLOAT (6,2) NOT NULL,
+    order_total FLOAT (6,2) NULL,
     CONSTRAINT fk_order_user FOREIGN KEY (buyer_id) REFERENCES `user`(user_id) ON DELETE RESTRICT
 );
 
@@ -614,6 +615,7 @@ VALUES
 -- platform_metrics
 INSERT INTO platform_metrics (metric_id, active_users, churned_users, conversions, retained_users, user_rate, conversion_rate, retention_rate, turnover_rate, recorded_at) 
 VALUES
+<<<<<<< Updated upstream
 (531, 782, 4198, 5190, 4911, 0.1813, 0.3182, 0.7768, 0.3214, '2025-08-25 23:28:35'),
 (532, 483, 107, 5915, 1911, 0.6811, 0.4075, 0.3808, 0.7308, '2025-10-06 03:53:39'),
 (533, 4955, 8066, 6491, 9920, 0.4227, 0.285, 0.3279, 0.9821, '2025-06-02 07:31:28'),
@@ -649,3 +651,590 @@ VALUES
 (563, 4142, 5170, 2066, 4685, 0.8128, 0.5068, 0.894, 0.375, '2025-09-21 23:59:09'),
 (564, 2584, 2116, 1038, 9647, 0.1103, 0.4556, 0.44, 0.0152, '2026-04-09 09:58:34'),
 (565, 8444, 7448, 9752, 9999, 0.7629, 0.7407, 0.7093, 0.7843, '2025-05-02 16:15:57');
+=======
+  ('01KP6KW51T94QNBXCZ6G16Q3SF', 782, 4198, 5190, 4911, 0.1813, 0.3182, 0.7768, 0.3214, '2025-08-25 23:28:35'),
+  ('01KP6KW51VKX0S4ZCWN37WHX4T', 483, 107, 5915, 1911, 0.6811, 0.4075, 0.3808, 0.7308, '2025-10-06 03:53:39'),
+  ('01KP6KW51W9EPZJRHEXH3ZSG5S', 4955, 8066, 6491, 9920, 0.4227, 0.285, 0.3279, 0.9821, '2025-06-02 07:31:28'),
+  ('01KP6KW51WPYNNGGDTFRHBJ744', 1927, 4283, 1179, 594, 0.0353, 0.6346, 0.1826, 0.9382, '2025-05-04 07:17:01'),
+  ('01KP6KW51X6KQ3K3BBB59MBT8A', 4487, 9108, 5360, 7278, 0.5294, 0.6443, 0.4352, 0.341, '2026-02-07 10:58:44'),
+  ('01KP6KW51X9XDSG9VAP4BBC01D', 5988, 6319, 4758, 2826, 0.853, 0.6096, 0.691, 0.6517, '2025-06-25 13:31:18'),
+  ('01KP6KW51YKJFTNHS6A2F55VY1', 1387, 4104, 8394, 8220, 0.4597, 0.1775, 0.2303, 0.0286, '2026-03-01 08:46:53'),
+  ('01KP6KW51ZSTYVQRZF3CXNXZ1V', 4464, 6143, 4561, 7055, 0.3461, 0.7766, 0.547, 0.1328, '2025-11-24 23:09:48'),
+  ('01KP6KW51ZZ40N5TQB9QCDX40B', 5593, 8850, 2431, 5176, 0.1693, 0.2624, 0.225, 0.8218, '2026-01-04 16:48:16'),
+  ('01KP6KW520821ATJVR4DNQWT9J', 7220, 7913, 2535, 3201, 0.2985, 0.6311, 0.984, 0.757, '2025-07-09 04:57:42'),
+  ('01KP6KW520JT8RHXQ836WJBXBP', 1239, 8791, 295, 6916, 0.8365, 0.4844, 0.976, 0.0112, '2025-06-10 23:38:00'),
+  ('01KP6KW521RRH3NAZ4ZZJ1H3XR', 4316, 9818, 4093, 7208, 0.8217, 0.4428, 0.0355, 0.911, '2025-07-30 06:06:38'),
+  ('01KP6KW521GYDCEV40DZK9HP7C', 5355, 5134, 1332, 6774, 0.6873, 0.545, 0.3314, 0.6163, '2025-06-05 17:46:02'),
+  ('01KP6KW5226PXTTRBSJTBAG32C', 8504, 6237, 2532, 7687, 0.3454, 0.7807, 0.1071, 0.3413, '2025-10-13 07:02:00'),
+  ('01KP6KW523BRFWXXQQH7JAJA50', 9397, 4968, 8787, 712, 0.6447, 0.8195, 0.947, 0.1403, '2025-11-30 11:37:17'),
+  ('01KP6KW523X7N6MBHQGPD3T0A5', 3248, 4408, 2162, 8590, 0.5393, 0.6921, 0.6923, 0.6599, '2026-03-04 15:29:55'),
+  ('01KP6KW524Y2TJ17701FZXF575', 1103, 8215, 4685, 3092, 0.2536, 0.176, 0.7845, 0.1246, '2025-09-18 06:34:57'),
+  ('01KP6KW5241DKFR93XETCRERQ8', 5449, 4346, 4225, 8842, 0.383, 0.1018, 0.2827, 0.8089, '2026-03-13 21:15:54'),
+  ('01KP6KW525BJY605G5QQE15SZA', 8093, 6497, 9603, 3399, 0.6136, 0.4775, 0.6911, 0.065, '2025-07-07 10:20:58'),
+  ('01KP6KW526S5AY57PZN0PMKZXE', 8145, 179, 7189, 6868, 0.1394, 0.9604, 0.3009, 0.7093, '2025-05-04 11:01:06'),
+  ('01KP6KW526H4ZFNCXFS8YKG2X9', 9659, 5266, 3051, 6449, 0.8291, 0.1583, 0.3501, 0.1319, '2025-10-24 02:47:01'),
+  ('01KP6KW527FNJMKZJEQDVPAJVC', 4524, 654, 9408, 8033, 0.8933, 0.1983, 0.7594, 0.6755, '2025-09-28 07:38:03'),
+  ('01KP6KW527YMTF2YNR11ED1ZE2', 625, 7545, 5933, 9086, 0.7136, 0.436, 0.3898, 0.177, '2025-04-18 13:27:29'),
+  ('01KP6KW528520PJNVNDD30XXHZ', 6703, 4576, 8343, 5846, 0.3815, 0.3436, 0.6942, 0.5674, '2026-03-23 08:52:49'),
+  ('01KP6KW528XJFZ7HMXWV4JZB86', 8603, 7872, 4476, 4804, 0.9761, 0.7191, 0.529, 0.8058, '2026-03-06 11:41:17'),
+  ('01KP6KW529ZZNPHKGSB9VFEZRP', 346, 7428, 230, 3003, 0.4162, 0.3392, 0.5567, 0.3472, '2025-11-26 03:20:40'),
+  ('01KP6KW52AW56VNQPV1XEZ0A91', 845, 2442, 5364, 7686, 0.4772, 0.9363, 0.388, 0.3693, '2025-12-23 01:06:29'),
+  ('01KP6KW52AE42MZV77ZAP9T9CM', 6450, 7760, 8428, 9172, 0.3438, 0.6711, 0.6711, 0.9528, '2026-04-02 01:45:08'),
+  ('01KP6KW52BQGQDJ3CPSENM9DEP', 4791, 6445, 7579, 8358, 0.8655, 0.4492, 0.8208, 0.5097, '2025-08-03 07:34:16'),
+  ('01KP6KW52B9SD95BE3XZM89MZE', 2597, 2455, 6693, 8478, 0.1535, 0.5589, 0.7441, 0.2476, '2025-07-02 13:01:56'),
+  ('01KP6KW52CNTVM1P841C8GYNX4', 7643, 6486, 1847, 9955, 0.3795, 0.0368, 0.6538, 0.243, '2025-08-10 16:13:04'),
+  ('01KP6KW52DJFXZKAY28YR41ZBK', 9762, 4918, 8672, 139, 0.2856, 0.037, 0.9519, 0.2527, '2025-08-29 03:34:59'),
+  ('01KP6KW52D57ZMKSS5PGA7R2VG', 4142, 5170, 2066, 4685, 0.8128, 0.5068, 0.894, 0.375, '2025-09-21 23:59:09'),
+  ('01KP6KW52E1N1VTC0J9JXPR0EG', 2584, 2116, 1038, 9647, 0.1103, 0.4556, 0.44, 0.0152, '2026-04-09 09:58:34'),
+  ('01KP6KW52EMYQ4S7QP2GR65NGJ', 8444, 7448, 9752, 9999, 0.7629, 0.7407, 0.7093, 0.7843, '2025-05-02 16:15:57');
+
+
+-- user
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (1, 'gtarry0', 'Goddard', 'Tarry', '318-516-5691', 'Male', '03558 Loomis Hill', 'Monroe', 'Louisiana', 'user', '1935-07-25', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (2, 'gsinderson1', 'Gal', 'Sinderson', '502-287-1193', 'Male', '3435 Green Terrace', 'Louisville', 'Kentucky', 'user', null, '2026-04-13 11:16:13', 'https://robohash.org/recusandaedistinctioimpedit.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (3, 'mhandford2', 'Michelle', 'Handford', '623-740-6731', 'Female', '00540 Grasskamp Pass', 'Phoenix', 'Arizona', 'user', null, '2026-04-13 11:16:13', 'https://robohash.org/eaquevoluptatemdeserunt.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (4, 'edanels3', 'Evita', 'Danels', '317-399-6065', 'Female', '8103 Buell Plaza', 'Indianapolis', 'Indiana', 'user', '1940-12-12', '2026-04-13 11:16:13', 'https://robohash.org/isteautomnis.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (5, 'kglencrosche4', 'Kenny', 'Glencrosche', '786-778-4049', 'Male', '94314 David Pass', 'Miami', 'Florida', 'user', '1987-11-03', '2026-04-13 11:16:13', 'https://robohash.org/nihilodiout.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (6, 'rjamieson5', 'Rosalynd', 'Jamieson', null, 'Female', '59 Monterey Hill', 'Waterbury', 'Connecticut', 'user', '2007-10-07', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (7, 'sfishenden6', 'Shalna', 'Fishenden', '718-965-9307', null, '556 Starling Pass', 'Brooklyn', 'New York', 'user', '1947-05-31', '2026-04-13 11:16:13', 'https://robohash.org/velveritatisaut.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (8, 'mamner7', 'Maryl', 'Amner', '714-691-9339', 'Female', '74 Katie Court', 'Orange', 'California', 'user', '2002-12-28', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (9, 'mshilton8', 'Mair', 'Shilton', '248-350-1014', 'Female', '7097 Starling Park', 'Troy', 'Michigan', 'user', '1973-12-13', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (10, 'dpriscott9', 'Danny', 'Priscott', '702-342-6740', 'Male', '44 Merry Crossing', 'Las Vegas', 'Nevada', 'user', '1982-11-15', '2026-04-13 11:16:13', 'https://robohash.org/etiuremolestiae.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (11, 'sbarnshawa', 'Sadye', 'Barnshaw', '303-228-8486', 'Female', '73611 Bartillon Circle', 'Denver', 'Colorado', 'user', '1958-12-18', '2026-04-13 11:16:13', 'https://robohash.org/idautet.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (12, 'rmcgairlb', 'Rees', 'McGairl', '916-548-8759', 'Male', '16 Vidon Way', 'Sacramento', 'California', 'user', '1968-07-22', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (13, 'pmewburnc', 'Papageno', 'Mewburn', null, 'Male', '3 Brown Court', 'Alexandria', 'Virginia', 'user', '1960-02-10', '2026-04-13 11:16:13', 'https://robohash.org/quodautemculpa.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (14, 'wboucherd', 'Wright', 'Boucher', '801-923-9632', null, '99 Oak Center', 'Salt Lake City', 'Utah', 'user', '1954-04-22', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (15, 'lfursee', 'Lucilia', 'Furse', null, 'Female', '18 Monument Alley', 'Minneapolis', 'Minnesota', 'user', '1962-09-05', '2026-04-13 11:16:13', 'https://robohash.org/providentoccaecatisit.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (16, 'tmcgilvrayf', 'Tammara', 'McGilvray', '505-269-4307', 'Female', '44 Harper Plaza', 'Albuquerque', 'New Mexico', 'user', '1931-08-18', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (17, 'eromerilg', 'Elfrieda', 'Romeril', '915-179-7839', 'Female', '25812 Butterfield Way', 'El Paso', 'Texas', 'user', '1946-06-13', '2026-04-13 11:16:13', 'https://robohash.org/consequaturasperioresnihil.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (18, 'ldyetth', 'Lewes', 'Dyett', '404-122-2106', 'Male', '5769 Melrose Drive', 'Atlanta', 'Georgia', 'user', '1965-11-15', '2026-04-13 11:16:13', 'https://robohash.org/hicuterror.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (19, 'ahustleri', 'Adria', 'Hustler', '360-271-4023', 'Non-binary', '49 Pine View Street', 'Vancouver', 'Washington', 'user', '2006-02-24', '2026-04-13 11:16:13', 'https://robohash.org/voluptatemetdolor.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (20, 'dbinningj', 'Dun', 'Binning', '717-744-9895', 'Male', '68 Dapin Lane', 'Harrisburg', 'Pennsylvania', 'user', null, '2026-04-13 11:16:13', 'https://robohash.org/laborumimpeditomnis.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (21, 'kheadleyk', 'Karena', 'Headley', '520-528-3706', 'Female', '403 Trailsway Terrace', 'Tucson', 'Arizona', 'user', null, '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (22, 'clogsdalel', 'Catarina', 'Logsdale', '202-564-3878', 'Female', '1 Rowland Point', 'Washington', 'District of Columbia', 'user', '1937-03-20', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (23, 'kdeenym', 'Kurt', 'Deeny', null, 'Male', '853 Graedel Hill', 'Jacksonville', 'Florida', 'user', '1935-03-25', '2026-04-13 11:16:13', 'https://robohash.org/consecteturvelsint.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (24, 'xivanyushkinn', 'Ximenez', 'Ivanyushkin', '214-806-0140', null, '37 Superior Parkway', 'Dallas', 'Texas', 'user', '1977-01-18', '2026-04-13 11:16:13', 'https://robohash.org/etdoloribusconsequatur.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (25, 'edollardo', 'Enrika', 'Dollard', '205-170-9929', 'Female', '69650 Knutson Trail', 'Birmingham', 'Alabama', 'user', '1999-09-29', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (26, 'cpauluschp', 'Cloris', 'Paulusch', null, 'Female', '5488 Mockingbird Alley', 'Pittsburgh', 'Pennsylvania', 'user', '1965-09-03', '2026-04-13 11:16:13', 'https://robohash.org/cumquoautem.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (27, 'nklimpkeq', 'Natty', 'Klimpke', '361-857-3691', null, '807 Blackbird Road', 'Corpus Christi', 'Texas', 'user', '1972-04-09', '2026-04-13 11:16:13', 'https://robohash.org/adconsequaturvoluptatum.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (28, 'lavelingr', 'Luce', 'Aveling', null, 'Male', '3 Lerdahl Circle', 'Columbus', 'Ohio', 'user', '1942-08-17', '2026-04-13 11:16:13', 'https://robohash.org/rerumrecusandaeeveniet.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (29, 'pfinderss', 'Pasquale', 'Finders', '954-813-9501', null, '949 Parkside Way', 'Orlando', 'Florida', 'user', '1991-11-09', '2026-04-13 11:16:13', 'https://robohash.org/quodundeveniam.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (30, 'ccrownshawt', 'Ches', 'Crownshaw', '804-351-0054', 'Male', '165 Merchant Center', 'Richmond', 'Virginia', 'user', '1932-12-27', '2026-04-13 11:16:13', 'https://robohash.org/quismolestiaerecusandae.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (31, 'roilleru', 'Ruby', 'Oiller', '757-996-7003', 'Female', '8171 Lukken Court', 'Norfolk', 'Virginia', 'user', '1959-07-06', '2026-04-13 11:16:13', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (32, 'jbluev', 'Judie', 'Blue', '386-623-2411', 'Genderqueer', '68110 Esker Junction', 'Daytona Beach', 'Florida', 'user', '1945-05-04', '2026-04-13 11:16:13', 'https://robohash.org/quidemsolutaaccusantium.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (33, 'vcrombleholmew', 'Vaughan', 'Crombleholme', '415-666-9076', null, '144 Declaration Trail', 'San Francisco', 'California', 'user', '1951-09-07', '2026-04-13 11:16:13', 'https://robohash.org/idquasexplicabo.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (34, 'aleeburnex', 'Aymer', 'Leeburne', '212-240-8259', 'Male', '790 Russell Center', 'New York City', 'New York', 'user', '1992-01-07', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (35, 'sdanilovy', 'Stevy', 'Danilov', '281-402-6655', 'Male', '75424 Dorton Way', 'Houston', 'Texas', 'user', '1951-03-25', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (36, 'gblabeyz', 'Gardiner', 'Blabey', '704-465-4285', null, '8 Luster Junction', 'Charlotte', 'North Carolina', 'user', '1950-11-18', '2026-04-13 11:16:14', 'https://robohash.org/utquiat.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (37, 'gharsum10', 'Gratiana', 'Harsum', '951-867-9728', 'Female', '841 Duke Alley', 'Corona', 'California', 'user', '1972-08-21', '2026-04-13 11:16:14', 'https://robohash.org/necessitatibusetporro.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (38, 'jlicquorish11', 'Jacqueline', 'Licquorish', '801-967-0092', 'Agender', '8561 Tomscot Park', 'Salt Lake City', 'Utah', 'user', '1951-02-01', '2026-04-13 11:16:14', 'https://robohash.org/velsedhic.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (39, 'fmapledorum12', 'Felic', 'Mapledorum', null, 'Male', '086 Mifflin Way', 'Minneapolis', 'Minnesota', 'user', '1990-02-06', '2026-04-13 11:16:14', 'https://robohash.org/suntplaceatet.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (40, 'nguyton13', 'Neill', 'Guyton', '405-854-3499', 'Male', '269 Elmside Center', 'Oklahoma City', 'Oklahoma', 'user', '1998-03-01', '2026-04-13 11:16:14', 'https://robohash.org/atquequiaut.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (41, 'mmintoff14', 'Mariellen', 'Mintoff', '719-274-6396', 'Genderqueer', '41 Bunting Junction', 'Colorado Springs', 'Colorado', 'user', '1985-04-18', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (42, 'qcregan15', 'Quintana', 'Cregan', '704-520-1370', 'Female', '712 Cascade Center', 'Charlotte', 'North Carolina', 'user', '1961-08-26', '2026-04-13 11:16:14', 'https://robohash.org/utiurehic.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (43, 'cbenmore16', 'Calida', 'Benmore', '239-256-5125', 'Female', '57864 Magdeline Center', 'Cape Coral', 'Florida', 'user', '1958-12-28', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (44, 'bmcorkil17', 'Boycey', 'McOrkil', '303-665-7759', null, '1 Melody Parkway', 'Littleton', 'Colorado', 'user', '1941-10-09', '2026-04-13 11:16:14', 'https://robohash.org/animieligendiautem.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (45, 'jhorburgh18', 'Juli', 'Horburgh', '636-395-4948', null, '6524 Meadow Ridge Alley', 'Saint Louis', 'Missouri', 'user', '2000-04-21', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (46, 'ghicklingbottom19', 'Giselle', 'Hicklingbottom', '239-672-1490', 'Female', '1 Alpine Street', 'Naples', 'Florida', 'user', '2004-03-07', '2026-04-13 11:16:14', 'https://robohash.org/laboresintnatus.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (47, 'acurness1a', 'Alyda', 'Curness', '320-999-0773', 'Female', '01402 Rusk Court', 'Saint Cloud', 'Minnesota', 'user', '1945-06-24', '2026-04-13 11:16:14', 'https://robohash.org/utconsequaturporro.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (48, 'rlines1b', 'Roddy', 'Lines', null, 'Male', '67 Maryland Plaza', 'Omaha', 'Nebraska', 'user', '1958-07-29', '2026-04-13 11:16:14', 'https://robohash.org/etipsasimilique.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (49, 'iwookey1c', 'Ida', 'Wookey', '712-692-8848', 'Female', '40238 Hoepker Street', 'Sioux City', 'Iowa', 'user', '2004-04-18', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (50, 'atallyn1d', 'Andi', 'Tallyn', '408-282-3414', 'Female', '7 Tennyson Junction', 'San Jose', 'California', 'user', '1960-12-03', '2026-04-13 11:16:14', 'https://robohash.org/etestaccusantium.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (51, 'hputtock1e', 'Hartley', 'Puttock', '352-574-3907', 'Male', '4182 Lakewood Center', 'Ocala', 'Florida', 'user', '1930-11-19', '2026-04-13 11:16:14', 'https://robohash.org/rerumlaboriosamfacere.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (52, 'dcoldman1f', 'Dana', 'Coldman', null, 'Female', '3381 Morning Hill', 'Jacksonville', 'Florida', 'user', '1997-08-15', '2026-04-13 11:16:14', 'https://robohash.org/aspernaturvelmolestiae.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (53, 'eovize1g', 'Elwin', 'Ovize', '757-805-8809', 'Male', '9 Hoard Place', 'Newport News', 'Virginia', 'user', '1942-03-21', '2026-04-13 11:16:14', 'https://robohash.org/recusandaeenimerror.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (54, 'ldunkley1h', 'Lura', 'Dunkley', '515-723-5289', 'Female', '04 Fisk Drive', 'Des Moines', 'Iowa', 'user', '1936-11-18', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (55, 'nolennane1i', 'Nadiya', 'O''Lennane', '904-931-0965', 'Female', '2164 Buell Junction', 'Jacksonville', 'Florida', 'user', '1999-06-17', '2026-04-13 11:16:14', 'https://robohash.org/solutaculpasunt.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (56, 'styndall1j', 'Sherwynd', 'Tyndall', '502-209-6791', 'Male', '7 Arrowood Circle', 'Louisville', 'Kentucky', 'user', '1957-06-29', '2026-04-13 11:16:14', 'https://robohash.org/quiaperiamquae.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (57, 'hrigmand1k', 'Hasty', 'Rigmand', '717-354-7477', 'Male', '2557 Briar Crest Place', 'Harrisburg', 'Pennsylvania', 'user', '1973-10-11', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (58, 'wgosker1l', 'Willie', 'Gosker', '918-477-2956', 'Genderqueer', '29687 Kropf Junction', 'Tulsa', 'Oklahoma', 'user', '2005-10-18', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (59, 'cjoslow1m', 'Cart', 'Joslow', null, null, '4919 Menomonie Hill', 'Flint', 'Michigan', 'user', '1977-10-12', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (60, 'mbyles1n', 'Miller', 'Byles', null, 'Male', '6803 Lakeland Junction', 'Cleveland', 'Ohio', 'user', '1979-03-18', '2026-04-13 11:16:14', 'https://robohash.org/ullameaquebeatae.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (61, 'fneubigin1o', 'Faun', 'Neubigin', '231-322-6185', 'Female', '30 Roth Terrace', 'Muskegon', 'Michigan', 'user', null, '2026-04-13 11:16:14', 'https://robohash.org/velitanimiet.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (62, 'aizen1p', 'Antonia', 'Izen', '212-583-1550', null, '0721 Hansons Hill', 'New York City', 'New York', 'user', '1949-05-15', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (63, 'dtremolieres1q', 'Daniella', 'Tremolieres', '772-188-3330', 'Female', '9734 Charing Cross Circle', 'Vero Beach', 'Florida', 'user', '1943-04-15', '2026-04-13 11:16:14', 'https://robohash.org/quocumquequod.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (64, 'bgilford1r', 'Bethina', 'Gilford', null, 'Bigender', '2350 Rigney Crossing', 'Los Angeles', 'California', 'user', '1999-07-17', '2026-04-13 11:16:14', 'https://robohash.org/estlaudantiumsed.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (65, 'jsuch1s', 'Jamaal', 'Such', null, 'Bigender', '6110 Bonner Center', 'Washington', 'District of Columbia', 'user', '1971-03-29', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (66, 'vquilty1t', 'Vaughn', 'Quilty', null, 'Male', '72 5th Point', 'Atlanta', 'Georgia', 'user', '1939-06-23', '2026-04-13 11:16:14', 'https://robohash.org/quipossimusvoluptate.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (67, 'econford1u', 'Erda', 'Conford', null, null, '2 Lunder Park', 'Northridge', 'California', 'user', '1969-03-08', '2026-04-13 11:16:14', 'https://robohash.org/exfugaquas.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (68, 'nlewens1v', 'Norrie', 'Lewens', '915-263-1303', 'Male', '46 Shasta Way', 'El Paso', 'Texas', 'user', '2003-01-31', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (69, 'bmichel1w', 'Bernadene', 'Michel', null, 'Female', '70 Huxley Crossing', 'Pittsburgh', 'Pennsylvania', 'user', '2003-06-24', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (70, 'vgorthy1x', 'Vera', 'Gorthy', null, 'Female', '9628 Buell Alley', 'Washington', 'District of Columbia', 'user', null, '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (71, 'mroscamp1y', 'Murray', 'Roscamp', null, 'Male', '45 Springs Street', 'Salt Lake City', 'Utah', 'user', '1983-08-28', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (72, 'ablasik1z', 'Abbye', 'Blasik', null, 'Female', '43 Brickson Park Parkway', 'Shawnee Mission', 'Kansas', 'user', '1971-11-22', '2026-04-13 11:16:14', 'https://robohash.org/cumquequodomnis.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (73, 'dhuntriss20', 'Dianna', 'Huntriss', '212-250-1161', 'Female', '958 Messerschmidt Road', 'New York City', 'New York', 'user', '1970-12-03', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (74, 'jbickell21', 'Jyoti', 'Bickell', '503-597-6298', null, '49379 Spenser Alley', 'Portland', 'Oregon', 'user', null, '2026-04-13 11:16:14', 'https://robohash.org/reiciendisvoluptasiste.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (75, 'lodonohue22', 'Lindsay', 'O''Donohue', '912-822-0484', null, '72 Autumn Leaf Crossing', 'Savannah', 'Georgia', 'user', '1969-04-16', '2026-04-13 11:16:14', 'https://robohash.org/earummagnamaspernatur.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (76, 'jsolloway23', 'Jany', 'Solloway', '202-679-7660', null, '40377 Novick Place', 'Washington', 'District of Columbia', 'user', '1948-01-19', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (77, 'bgearing24', 'Bobbette', 'Gearing', '920-393-2620', 'Female', '7 Lunder Alley', 'Appleton', 'Wisconsin', 'user', null, '2026-04-13 11:16:14', 'https://robohash.org/ipsaprovidentmaiores.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (78, 'tplaister25', 'Thorsten', 'Plaister', null, 'Male', '742 Johnson Terrace', 'Seattle', 'Washington', 'user', null, '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (79, 'jciobutaro26', 'Julia', 'Ciobutaro', '570-773-1991', 'Female', '8693 Melby Place', 'Scranton', 'Pennsylvania', 'user', '1982-10-04', '2026-04-13 11:16:14', 'https://robohash.org/architectoeaqueperspiciatis.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (80, 'carnaldi27', 'Cleopatra', 'Arnaldi', '801-546-7510', 'Female', '516 Maywood Pass', 'Salt Lake City', 'Utah', 'user', '2005-10-12', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (81, 'gdunbabin28', 'Gaspard', 'Dunbabin', '858-872-6885', 'Male', '0 Anderson Crossing', 'San Diego', 'California', 'user', '1987-12-02', '2026-04-13 11:16:14', 'https://robohash.org/beataeeoslaborum.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (82, 'apachta29', 'Ansley', 'Pachta', '801-489-6718', 'Female', '37238 Elgar Court', 'Salt Lake City', 'Utah', 'user', null, '2026-04-13 11:16:14', 'https://robohash.org/autematvel.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (83, 'jconahy2a', 'Joellen', 'Conahy', null, 'Female', '941 Nancy Lane', 'Columbus', 'Mississippi', 'user', '1930-06-17', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (84, 'ctaberer2b', 'Christabel', 'Taberer', '502-423-2124', 'Female', '55 Lukken Junction', 'Louisville', 'Kentucky', 'user', '2004-08-15', '2026-04-13 11:16:14', 'https://robohash.org/expeditaestmaxime.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (85, 'chrus2c', 'Carlen', 'Hrus', null, null, '55 Caliangt Crossing', 'Metairie', 'Louisiana', 'user', '1951-09-08', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (86, 'cwyness2d', 'Curran', 'Wyness', '914-663-3752', 'Male', '8 Darwin Center', 'Yonkers', 'New York', 'user', '2003-06-29', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (87, 'qantoniak2e', 'Quintina', 'Antoniak', null, null, '1 Kinsman Avenue', 'Washington', 'District of Columbia', 'user', '1976-12-31', '2026-04-13 11:16:14', null);
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (88, 'jshetliff2f', 'Josy', 'Shetliff', '407-910-4932', null, '1049 Mosinee Court', 'Orlando', 'Florida', 'user', '1937-03-31', '2026-04-13 11:16:14', 'https://robohash.org/inquidemvoluptate.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (89, 'hmundee2g', 'Helen', 'Mundee', '646-702-9901', null, '875 Warbler Lane', 'New York City', 'New York', 'user', '1997-02-12', '2026-04-13 11:16:14', 'https://robohash.org/sunteiuslibero.png?size=50x50&set=set1');
+insert into user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) values (90, 'ebenka2h', 'Eachelle', 'Benka', null, 'Female', '3 Haas Circle', 'Lake Worth', 'Florida', 'user', null, '2026-04-13 11:16:14', 'https://robohash.org/autquiomnis.png?size=50x50&set=set1');
+
+-- user_email
+insert into user_email (email_id, user_id, email, is_primary) values (1, 30, 'wcord0@huffingtonpost.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (2, 84, 'kchild1@amazon.co.uk', false);
+insert into user_email (email_id, user_id, email, is_primary) values (3, 59, 'varnason2@surveymonkey.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (4, 33, 'stellenbroker3@com.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (5, 24, 'rmoth4@cisco.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (6, 19, 'cmuxworthy5@slate.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (7, 34, 'fkinde6@constantcontact.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (8, 20, 'akopman7@shutterfly.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (9, 58, 'adaynter8@symantec.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (10, 42, 'edowley9@blogspot.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (11, 22, 'mcollecotta@nsw.gov.au', true);
+insert into user_email (email_id, user_id, email, is_primary) values (12, 58, 'ggomersallb@alibaba.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (13, 32, 'gmalyjc@umn.edu', true);
+insert into user_email (email_id, user_id, email, is_primary) values (14, 46, 'dparslowd@google.co.jp', true);
+insert into user_email (email_id, user_id, email, is_primary) values (15, 23, 'hpanthere@arizona.edu', false);
+insert into user_email (email_id, user_id, email, is_primary) values (16, 63, 'mseagoodf@stanford.edu', false);
+insert into user_email (email_id, user_id, email, is_primary) values (17, 60, 'ssingletong@nature.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (18, 19, 'zkiebesh@hao123.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (19, 10, 'tparishi@marriott.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (20, 54, 'fallredj@google.co.jp', true);
+insert into user_email (email_id, user_id, email, is_primary) values (21, 63, 'giscowitzk@rambler.ru', true);
+insert into user_email (email_id, user_id, email, is_primary) values (22, 83, 'enonil@irs.gov', true);
+insert into user_email (email_id, user_id, email, is_primary) values (23, 4, 'dcollingridgem@shutterfly.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (24, 60, 'bculleyn@businessinsider.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (25, 60, 'slabbeo@apple.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (26, 39, 'sthorndalep@macromedia.com', false);
+insert into user_email (email_id, user_id, email, is_primary) values (27, 46, 'ncogginq@lycos.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (28, 19, 'abrearleyr@umn.edu', true);
+insert into user_email (email_id, user_id, email, is_primary) values (29, 6, 'hlimbs@earthlink.net', false);
+insert into user_email (email_id, user_id, email, is_primary) values (30, 80, 'lyouellt@bigcartel.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (31, 73, 'aperesu@php.net', true);
+insert into user_email (email_id, user_id, email, is_primary) values (32, 44, 'ecleifev@digg.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (33, 60, 'icaulfieldw@arstechnica.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (34, 40, 'magerskowx@delicious.com', true);
+insert into user_email (email_id, user_id, email, is_primary) values (35, 37, 'wdicksony@drupal.org', false);
+
+-- artist
+insert into artist (artist_id, is_verified) values (1, false);
+insert into artist (artist_id, is_verified) values (2, true);
+insert into artist (artist_id, is_verified) values (3, true);
+insert into artist (artist_id, is_verified) values (4, false);
+insert into artist (artist_id, is_verified) values (5, true);
+insert into artist (artist_id, is_verified) values (6, true);
+insert into artist (artist_id, is_verified) values (7, true);
+insert into artist (artist_id, is_verified) values (8, true);
+insert into artist (artist_id, is_verified) values (9, true);
+insert into artist (artist_id, is_verified) values (10, false);
+insert into artist (artist_id, is_verified) values (11, true);
+insert into artist (artist_id, is_verified) values (12, false);
+insert into artist (artist_id, is_verified) values (13, true);
+insert into artist (artist_id, is_verified) values (14, false);
+insert into artist (artist_id, is_verified) values (15, false);
+insert into artist (artist_id, is_verified) values (16, true);
+insert into artist (artist_id, is_verified) values (17, true);
+insert into artist (artist_id, is_verified) values (18, true);
+insert into artist (artist_id, is_verified) values (19, true);
+insert into artist (artist_id, is_verified) values (20, false);
+insert into artist (artist_id, is_verified) values (21, true);
+insert into artist (artist_id, is_verified) values (22, true);
+insert into artist (artist_id, is_verified) values (23, true);
+insert into artist (artist_id, is_verified) values (24, true);
+insert into artist (artist_id, is_verified) values (25, false);
+insert into artist (artist_id, is_verified) values (26, true);
+insert into artist (artist_id, is_verified) values (27, false);
+insert into artist (artist_id, is_verified) values (28, true);
+insert into artist (artist_id, is_verified) values (29, false);
+insert into artist (artist_id, is_verified) values (30, false);
+insert into artist (artist_id, is_verified) values (31, true);
+insert into artist (artist_id, is_verified) values (32, true);
+insert into artist (artist_id, is_verified) values (33, true);
+insert into artist (artist_id, is_verified) values (34, false);
+insert into artist (artist_id, is_verified) values (35, false);
+insert into artist (artist_id, is_verified) values (36, false);
+insert into artist (artist_id, is_verified) values (37, true);
+insert into artist (artist_id, is_verified) values (38, false);
+insert into artist (artist_id, is_verified) values (39, false);
+insert into artist (artist_id, is_verified) values (40, true);
+insert into artist (artist_id, is_verified) values (41, true);
+insert into artist (artist_id, is_verified) values (42, true);
+insert into artist (artist_id, is_verified) values (43, true);
+insert into artist (artist_id, is_verified) values (44, false);
+insert into artist (artist_id, is_verified) values (45, true);
+insert into artist (artist_id, is_verified) values (46, true);
+insert into artist (artist_id, is_verified) values (47, true);
+insert into artist (artist_id, is_verified) values (48, true);
+insert into artist (artist_id, is_verified) values (49, false);
+insert into artist (artist_id, is_verified) values (50, false);
+insert into artist (artist_id, is_verified) values (51, false);
+insert into artist (artist_id, is_verified) values (52, true);
+insert into artist (artist_id, is_verified) values (53, true);
+insert into artist (artist_id, is_verified) values (54, true);
+insert into artist (artist_id, is_verified) values (55, true);
+insert into artist (artist_id, is_verified) values (56, true);
+insert into artist (artist_id, is_verified) values (57, true);
+insert into artist (artist_id, is_verified) values (58, false);
+insert into artist (artist_id, is_verified) values (59, false);
+insert into artist (artist_id, is_verified) values (60, false);
+
+-- admin
+insert into admin (admin_id, first_name, last_name, role) values (1, 'Marie-ann', 'Welch', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (2, 'Bevvy', 'Creane', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (3, 'Tate', 'Legion', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (4, 'Kingsley', 'Ross', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (5, 'Laure', 'Dunlop', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (6, 'Lena', 'Burkman', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (7, 'Susanne', 'Dwire', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (8, 'Peggy', 'Sawkin', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (9, 'Osgood', 'Jaycox', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (10, 'Shelton', 'Orht', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (11, 'Pamella', 'Gowdridge', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (12, 'Petra', 'Pinnocke', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (13, 'Lark', 'Findlow', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (14, 'Konstantin', 'Thundercliffe', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (15, 'Demetri', 'Winser', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (16, 'Even', 'Gorman', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (17, 'Simone', 'Deners', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (18, 'Horatio', 'Saye', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (19, 'Sharai', 'Mannix', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (20, 'Oby', 'Heselwood', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (21, 'Nessy', 'Greenroyd', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (22, 'Gelya', 'Doni', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (23, 'Stefanie', 'Abercrombie', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (24, 'Leanor', 'Hendin', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (25, 'Idelle', 'Bolus', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (26, 'Cristal', 'Scogings', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (27, 'Blinny', 'Colin', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (28, 'Teodorico', 'Vallis', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (29, 'Julianna', 'Foot', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (30, 'Tyson', 'Mathivat', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (31, 'Kass', 'Shillito', 'manager');
+insert into admin (admin_id, first_name, last_name, role) values (32, 'Clementius', 'Wrench', 'performance');
+insert into admin (admin_id, first_name, last_name, role) values (33, 'Niki', 'Hackford', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (34, 'Winifred', 'Gehrtz', 'systems');
+insert into admin (admin_id, first_name, last_name, role) values (35, 'Patty', 'Rugieri', 'manager');
+
+-- admin_email
+insert into admin_email (email_id, admin_id, email, is_primary) values (1, 30, 'pgreste0@fastcompany.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (2, 1, 'wgreenwell1@shop-pro.jp', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (3, 31, 'adoey2@ox.ac.uk', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (4, 26, 'gmclernon3@quantcast.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (5, 7, 'estorror4@auda.org.au', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (6, 12, 'pwhittier5@sourceforge.net', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (7, 17, 'kmapplethorpe6@wikia.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (8, 28, 'dpalfreeman7@hao123.com', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (9, 19, 'eridger8@ezinearticles.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (10, 4, 'tchalk9@google.com.hk', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (11, 10, 'bjelfa@aol.com', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (12, 21, 'araybouldb@comcast.net', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (13, 7, 'gstirmanc@ameblo.jp', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (14, 22, 'jblundelld@pinterest.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (15, 22, 'dcornforde@hp.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (16, 28, 'syellopf@123-reg.co.uk', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (17, 5, 'gbrittg@wikimedia.org', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (18, 11, 'ppieh@yahoo.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (19, 15, 'cburli@cdc.gov', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (20, 5, 'dalbistonj@shop-pro.jp', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (21, 19, 'iloneyk@xinhuanet.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (22, 2, 'jscholzl@state.gov', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (23, 31, 'ggarettm@netvibes.com', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (24, 26, 'clawlyn@seesaa.net', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (25, 26, 'cbaseggioo@hc360.com', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (26, 2, 'kbustp@gravatar.com', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (27, 22, 'dmannq@canalblog.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (28, 19, 'bcassimerr@mediafire.com', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (29, 2, 'cmacsporrans@illinois.edu', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (30, 20, 'pbrodestt@cargocollective.com', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (31, 13, 'ckaesu@amazon.co.uk', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (32, 21, 'cchengv@yolasite.com', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (33, 31, 'astariesw@typepad.com', true);
+insert into admin_email (email_id, admin_id, email, is_primary) values (34, 4, 'stregianx@free.fr', false);
+insert into admin_email (email_id, admin_id, email, is_primary) values (35, 6, 'jdudneyy@drupal.org', false);
+
+-- artist_status
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (1, 15, 60, '2026-04-14 17:45:41', 'under review');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (2, 34, 26, '2026-04-14 17:45:41', 'under review');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (3, 12, 58, '2026-04-14 17:45:41', 'banned');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (4, 29, 37, '2026-04-14 17:45:41', 'banned');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (5, 24, 50, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (6, 28, 12, '2026-04-14 17:45:41', 'banned');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (7, 21, 52, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (8, 24, 53, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (9, 28, 25, '2026-04-14 17:45:41', 'resolved');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (10, 22, 36, '2026-04-14 17:45:41', 'resolved');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (11, 28, 31, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (12, 18, 32, '2026-04-14 17:45:41', 'banned');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (13, 26, 46, '2026-04-14 17:45:41', 'under review');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (14, 17, 33, '2026-04-14 17:45:41', 'banned');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (15, 18, 27, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (16, 29, 14, '2026-04-14 17:45:41', 'banned');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (17, 18, 51, '2026-04-14 17:45:41', 'under review');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (18, 3, 59, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (19, 4, 22, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (20, 11, 57, '2026-04-14 17:45:41', 'resolved');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (21, 34, 27, '2026-04-14 17:45:41', 'resolved');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (22, 30, 21, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (23, 33, 2, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (24, 33, 32, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (25, 32, 32, '2026-04-14 17:45:41', 'resolved');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (26, 6, 34, '2026-04-14 17:45:41', 'banned');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (27, 31, 51, '2026-04-14 17:45:41', 'resolved');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (28, 13, 52, '2026-04-14 17:45:41', 'resolved');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (29, 16, 3, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (30, 24, 12, '2026-04-14 17:45:41', 'under review');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (31, 16, 12, '2026-04-14 17:45:41', 'under review');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (32, 21, 45, '2026-04-14 17:45:41', 'verified');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (33, 13, 3, '2026-04-14 17:45:41', 'banned');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (34, 35, 4, '2026-04-14 17:45:41', 'under review');
+insert into artist_status (status_id, reviewer_id, artist_id, created_at, status) values (35, 27, 27, '2026-04-14 17:45:41', 'banned');
+
+-- category
+insert into category (category_id, name) values (1, 'Folklore');
+insert into category (category_id, name) values (2, 'Retro Nostalgia');
+insert into category (category_id, name) values (3, 'Sneakers');
+insert into category (category_id, name) values (4, 'Medieval Fantasy');
+insert into category (category_id, name) values (5, 'Zodiac Signs');
+insert into category (category_id, name) values (6, 'Architecture');
+insert into category (category_id, name) values (7, 'Mascot Characters');
+insert into category (category_id, name) values (8, 'Music & Bands');
+insert into category (category_id, name) values (9, 'Botany');
+insert into category (category_id, name) values (10, 'Historical Figures');
+insert into category (category_id, name) values (11, 'Video Games');
+insert into category (category_id, name) values (12, 'Beverages');
+insert into category (category_id, name) values (13, 'Designer Toys');
+insert into category (category_id, name) values (14, 'Kawaii');
+insert into category (category_id, name) values (15, 'Superheroes');
+insert into category (category_id, name) values (16, 'Anime');
+insert into category (category_id, name) values (17, 'European Architecture');
+insert into category (category_id, name) values (18, 'Urban Vinyl');
+insert into category (category_id, name) values (19, 'Space Exploration');
+insert into category (category_id, name) values (20, 'Asian Architecture');
+insert into category (category_id, name) values (21, 'School Mascot Characters');
+insert into category (category_id, name) values (22, '2000s Nostalgia');
+insert into category (category_id, name) values (23, 'Steampunk');
+insert into category (category_id, name) values (24, 'Sci-Fi');
+insert into category (category_id, name) values (25, 'Horror');
+insert into category (category_id, name) values (26, 'Cats');
+insert into category (category_id, name) values (27, 'Miscellaneous');
+insert into category (category_id, name) values (28, 'Food');
+insert into category (category_id, name) values (29, 'Dogs');
+insert into category (category_id, name) values (30, 'Pin-Up');
+insert into category (category_id, name) values (31, 'Ocean Life');
+insert into category (category_id, name) values (32, 'Space');
+insert into category (category_id, name) values (33, 'Classic Board Games');
+insert into category (category_id, name) values (34, '90s Nostalgia');
+insert into category (category_id, name) values (35, '50s Nostalgia');
+
+-- item
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (1, 'Super Villains', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'S', 'http://dummyimage.com/196x100.png/ff4444/ffffff', 14, 7);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (2, 'Circus Circus', null, 'L', 'http://dummyimage.com/170x100.png/cc0000/ffffff', 34, 15);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (3, 'Enchanted Forest', 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', 'L', 'http://dummyimage.com/148x100.png/cc0000/ffffff', 34, 2);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (4, 'Artistic Masterpieces', null, 'M', 'http://dummyimage.com/235x100.png/5fa2dd/ffffff', 6, 18);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (5, 'Cyberpunk City', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'L', 'http://dummyimage.com/225x100.png/5fa2dd/ffffff', 3, 25);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (6, 'Mythical Creatures', 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', 'M', 'http://dummyimage.com/240x100.png/dddddd/000000', 58, 4);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (7, 'Tech Gadgets', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', 'S', 'http://dummyimage.com/191x100.png/dddddd/000000', 6, 24);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (8, 'Foodie Fun', 'Phasellus in felis. Donec semper sapien a libero. Nam dui.', 'M', 'http://dummyimage.com/204x100.png/dddddd/000000', 53, 1);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (9, 'Zombie Apocalypse', 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', 'S', 'http://dummyimage.com/241x100.png/cc0000/ffffff', 48, 8);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (10, 'Ancient Egypt', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.', 'L', 'http://dummyimage.com/189x100.png/cc0000/ffffff', 22, 24);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (11, 'Pirate Adventure', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', 'S', 'http://dummyimage.com/216x100.png/ff4444/ffffff', 19, 35);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (12, 'Magic Potions', 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.', 'M', 'http://dummyimage.com/120x100.png/dddddd/000000', 58, 3);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (13, 'Dinosaur Discovery', 'In congue. Etiam justo. Etiam pretium iaculis justo.', 'M', 'http://dummyimage.com/134x100.png/cc0000/ffffff', 35, 14);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (14, 'Wild West Saloon', 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', 'L', 'http://dummyimage.com/129x100.png/cc0000/ffffff', 52, 10);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (15, 'Dinosaur Discovery', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'L', 'http://dummyimage.com/168x100.png/dddddd/000000', 31, 33);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (16, 'Ancient Egypt', 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', 'S', 'http://dummyimage.com/151x100.png/cc0000/ffffff', 11, 1);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (17, 'Robot Revolution', 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 'S', 'http://dummyimage.com/250x100.png/5fa2dd/ffffff', 5, 23);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (18, 'Medieval Knights', 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', 'S', 'http://dummyimage.com/158x100.png/dddddd/000000', 47, 32);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (19, 'Haunted Mansion', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.', 'M', 'http://dummyimage.com/120x100.png/5fa2dd/ffffff', 29, 11);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (20, 'Time Travelers', 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.', 'L', 'http://dummyimage.com/122x100.png/dddddd/000000', 6, 35);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (21, 'Tech Gadgets', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 'S', 'http://dummyimage.com/159x100.png/ff4444/ffffff', 41, 30);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (22, 'Pirate''s Cove', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.', 'S', 'http://dummyimage.com/250x100.png/cc0000/ffffff', 36, 1);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (23, 'Fairy Tale Castle', 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 'M', 'http://dummyimage.com/168x100.png/dddddd/000000', 46, 22);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (24, 'Musical Melodies', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.', 'M', 'http://dummyimage.com/173x100.png/ff4444/ffffff', 26, 21);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (25, 'Pirate Adventure', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 'M', 'http://dummyimage.com/101x100.png/ff4444/ffffff', 32, 25);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (26, 'Steampunk Workshop', 'Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.', 'M', 'http://dummyimage.com/124x100.png/ff4444/ffffff', 10, 20);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (27, 'Magical Unicorn', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', 'L', 'http://dummyimage.com/182x100.png/dddddd/000000', 12, 11);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (28, 'Fairy Tale Castle', 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.', 'S', 'http://dummyimage.com/231x100.png/cc0000/ffffff', 25, 22);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (29, 'Pirate''s Cove', 'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.', 'S', 'http://dummyimage.com/106x100.png/5fa2dd/ffffff', 9, 11);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (30, 'Circus Circus', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', 'M', 'http://dummyimage.com/211x100.png/cc0000/ffffff', 45, 25);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (31, 'Tech Gadgets', null, 'M', 'http://dummyimage.com/201x100.png/cc0000/ffffff', 4, 34);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (32, 'Toy Box Treasures', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', 'S', 'http://dummyimage.com/173x100.png/5fa2dd/ffffff', 57, 4);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (33, 'Pirate Adventure', 'In congue. Etiam justo. Etiam pretium iaculis justo.', 'L', 'http://dummyimage.com/159x100.png/ff4444/ffffff', 50, 25);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (34, 'Jurassic Dino World', 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.', 'L', 'http://dummyimage.com/140x100.png/ff4444/ffffff', 59, 26);
+insert into item (item_id, name, description, size, image_link, artist_id, category_id) values (35, 'Mythical Creatures', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 'S', 'http://dummyimage.com/218x100.png/cc0000/ffffff', 38, 19);
+
+-- variants
+insert into variants (item_id, name, pull_rate) values (20, 'Green large fairy', 0.38);
+insert into variants (item_id, name, pull_rate) values (28, 'Blue medium dragon', 0.51);
+insert into variants (item_id, name, pull_rate) values (10, 'Yellow extra large mermaid', 0.19);
+insert into variants (item_id, name, pull_rate) values (18, 'Purple tiny gnome', 0.31);
+insert into variants (item_id, name, pull_rate) values (32, 'Red large fairy', 0.27);
+insert into variants (item_id, name, pull_rate) values (35, 'Blue extra large mermaid', 0.11);
+insert into variants (item_id, name, pull_rate) values (1, 'Purple large fairy', 0.27);
+insert into variants (item_id, name, pull_rate) values (6, 'Yellow large fairy', 0.45);
+insert into variants (item_id, name, pull_rate) values (22, 'Red large fairy', 0.71);
+insert into variants (item_id, name, pull_rate) values (31, 'Red small unicorn', 0.74);
+insert into variants (item_id, name, pull_rate) values (21, 'Green medium dragon', 0.03);
+insert into variants (item_id, name, pull_rate) values (9, 'Blue large fairy', 0.08);
+insert into variants (item_id, name, pull_rate) values (23, 'Orange large fairy', 0.12);
+insert into variants (item_id, name, pull_rate) values (32, 'Pink large fairy', 0.86);
+insert into variants (item_id, name, pull_rate) values (6, 'Blue small unicorn', 0.38);
+insert into variants (item_id, name, pull_rate) values (33, 'Yellow extra large mermaid', 0.61);
+insert into variants (item_id, name, pull_rate) values (32, 'Yellow small unicorn', 0.78);
+insert into variants (item_id, name, pull_rate) values (11, 'Purple extra large mermaid', 0.07);
+insert into variants (item_id, name, pull_rate) values (26, 'Green extra large mermaid', 0.26);
+insert into variants (item_id, name, pull_rate) values (6, 'Red large fairy', 0.82);
+insert into variants (item_id, name, pull_rate) values (27, 'Purple tiny gnome', 0.98);
+insert into variants (item_id, name, pull_rate) values (9, 'Teal large fairy', 0.67);
+insert into variants (item_id, name, pull_rate) values (34, 'Silver large fairy', 0.86);
+insert into variants (item_id, name, pull_rate) values (11, 'Purple medium dragon', 0.1);
+insert into variants (item_id, name, pull_rate) values (35, 'Pink extra large mermaid', 0.11);
+insert into variants (item_id, name, pull_rate) values (2, 'Blue extra large mermaid', 0.36);
+insert into variants (item_id, name, pull_rate) values (20, 'Red medium dragon', 0.53);
+insert into variants (item_id, name, pull_rate) values (35, 'Green tiny gnome', 0.47);
+insert into variants (item_id, name, pull_rate) values (4, 'Purple tiny gnome', 0.97);
+insert into variants (item_id, name, pull_rate) values (23, 'Orange tiny gnome', 0.83);
+insert into variants (item_id, name, pull_rate) values (15, 'Red extra large mermaid', 0.78);
+insert into variants (item_id, name, pull_rate) values (35, 'Teal extra large mermaid', 0.96);
+insert into variants (item_id, name, pull_rate) values (13, 'Yellow extra large mermaid', 0.95);
+insert into variants (item_id, name, pull_rate) values (25, 'Green small unicorn', 0.45);
+insert into variants (item_id, name, pull_rate) values (22, 'Blue tiny gnome', 0.74);
+insert into variants (item_id, name, pull_rate) values (4, 'Yellow medium dragon', 0.67);
+insert into variants (item_id, name, pull_rate) values (9, 'Pink extra large mermaid', 0.16);
+insert into variants (item_id, name, pull_rate) values (14, 'Red tiny gnome', 0.74);
+insert into variants (item_id, name, pull_rate) values (30, 'Blue medium dragon', 0.89);
+insert into variants (item_id, name, pull_rate) values (7, 'Teal large fairy', 0.4);
+insert into variants (item_id, name, pull_rate) values (26, 'Orange large fairy', 0.23);
+insert into variants (item_id, name, pull_rate) values (32, 'Silver tiny gnome', 0.31);
+insert into variants (item_id, name, pull_rate) values (25, 'Blue small unicorn', 0.51);
+insert into variants (item_id, name, pull_rate) values (3, 'Green extra large mermaid', 0.3);
+insert into variants (item_id, name, pull_rate) values (17, 'Purple small unicorn', 0.94);
+insert into variants (item_id, name, pull_rate) values (6, 'Green medium dragon', 0.92);
+insert into variants (item_id, name, pull_rate) values (31, 'Orange extra large mermaid', 0.07);
+insert into variants (item_id, name, pull_rate) values (31, 'Teal large fairy', 0.82);
+insert into variants (item_id, name, pull_rate) values (31, 'Pink large fairy', 0.9);
+insert into variants (item_id, name, pull_rate) values (30, 'Orange tiny gnome', 0.98);
+insert into variants (item_id, name, pull_rate) values (28, 'Silver large fairy', 0.34);
+insert into variants (item_id, name, pull_rate) values (10, 'Red small unicorn', 0.31);
+insert into variants (item_id, name, pull_rate) values (27, 'Yellow small unicorn', 0.91);
+insert into variants (item_id, name, pull_rate) values (5, 'Blue small unicorn', 0.78);
+insert into variants (item_id, name, pull_rate) values (12, 'Orange large fairy', 0.69);
+insert into variants (item_id, name, pull_rate) values (13, 'Green small unicorn', 0.7);
+insert into variants (item_id, name, pull_rate) values (32, 'Pink tiny gnome', 0.03);
+insert into variants (item_id, name, pull_rate) values (17, 'Teal extra large mermaid', 0.96);
+insert into variants (item_id, name, pull_rate) values (4, 'Silver medium dragon', 0.03);
+insert into variants (item_id, name, pull_rate) values (15, 'Purple extra large mermaid', 0.65);
+
+-- listing
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (1, 'Sci-Fi Robot Model', 9, 342.03, 'active', '2026-04-13 12:17:37', 35, 25);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (2, 'Vintage Porcelain Doll', 46, 93.06, 'active', '2026-04-13 12:17:37', 3, 28);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (3, 'Miniature Samurai Warrior Figurine', 99, 767.45, 'active', '2026-04-13 12:17:37', 25, 52);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (4, 'Gothic Gargoyle Figurine', 25, 997.82, 'pending', '2026-04-13 12:17:37', 17, 4);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (5, 'Sci-Fi Robot Model', 87, 296.86, 'active', '2026-04-13 12:17:37', 4, 39);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (6, 'Animal Sculpture Collection', 92, 687.89, 'active', '2026-04-13 12:17:37', 3, 28);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (7, 'Fairy Garden Figurine Set', 12, 16.22, 'active', '2026-04-13 12:17:37', 32, 30);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (8, 'Fairy Garden Figurine Set', 122, 769.14, 'active', '2026-04-13 12:17:37', 18, 1);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (9, 'Superhero Action Figure', 86, 60.92, 'pending', '2026-04-13 12:17:37', 10, 54);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (10, 'Animal Sculpture Collection', 28, 122.64, 'active', '2026-04-13 12:17:37', 31, 27);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (11, 'Mythical Creature Statue', 35, 863.77, 'rejected', '2026-04-13 12:17:37', 32, 30);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (12, 'Sci-Fi Robot Model', 81, 818.32, 'pending', '2026-04-13 12:17:37', 17, 4);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (13, 'Animal Sculpture Collection', 14, 330.98, 'flagged', '2026-04-13 12:17:37', 25, 52);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (14, 'Fairy Garden Figurine Set', 46, 202.98, 'pending', '2026-04-13 12:17:37', 3, 28);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (15, 'Miniature Samurai Warrior Figurine', 34, 701.83, 'archive', '2026-04-13 12:17:37', 29, 44);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (16, 'Gothic Gargoyle Figurine', 115, 37.41, 'archive', '2026-04-13 12:17:37', 28, 58);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (17, 'Vintage Porcelain Doll', 40, 914.38, 'rejected', '2026-04-13 12:17:37', 28, 58);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (18, 'Gothic Gargoyle Figurine', 96, 327.56, 'archive', '2026-04-13 12:17:37', 7, 40);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (19, 'Mystical Dragon Figurine', 74, 454.41, 'active', '2026-04-13 12:17:37', 16, 45);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (20, 'Gothic Gargoyle Figurine', 57, 226.8, 'active', '2026-04-13 12:17:37', 13, 37);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (21, 'Animal Sculpture Collection', 14, 61.31, 'active', '2026-04-13 12:17:37', 17, 4);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (22, 'Animal Sculpture Collection', 52, 979.34, 'rejected', '2026-04-13 12:17:37', 25, 52);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (23, 'Mythical Creature Statue', 1, 925.04, 'pending', '2026-04-13 12:17:37', 3, 28);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (24, 'Mystical Dragon Figurine', 29, 625.39, 'archive', '2026-04-13 12:17:37', 29, 44);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (25, 'Sci-Fi Robot Model', 107, 495.65, 'active', '2026-04-13 12:17:37', 19, 45);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (26, 'Miniature Samurai Warrior Figurine', 43, 885.94, 'flagged', '2026-04-13 12:17:37', 34, 6);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (27, 'Animal Sculpture Collection', 58, 818.54, 'active', '2026-04-13 12:17:37', 8, 16);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (28, 'Mystical Dragon Figurine', 139, 248.39, 'archive', '2026-04-13 12:17:37', 31, 27);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (29, 'Medieval Knight Bust', 116, 171.49, 'active', '2026-04-13 12:17:37', 22, 31);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (30, 'Miniature Samurai Warrior Figurine', 99, 862.36, 'archive', '2026-04-13 12:17:37', 29, 44);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (31, 'Mythical Creature Statue', 71, 351.78, 'active', '2026-04-13 12:17:37', 30, 43);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (32, 'Gothic Gargoyle Figurine', 149, 268.87, 'pending', '2026-04-13 12:17:37', 7, 40);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (33, 'Superhero Action Figure', 125, 47.46, 'active', '2026-04-13 12:17:37', 7, 40);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (34, 'Miniature Samurai Warrior Figurine', 142, 202.36, 'pending', '2026-04-13 12:17:37', 30, 43);
+insert into listing (listing_id, title, quantity, price, status, post_time, item_id, artist_id) values (35, 'Fairy Garden Figurine Set', 23, 601.9, 'archive', '2026-04-13 12:17:37', 26, 8);
+
+-- order
+insert into `order` (order_id, order_time, status, buyer_id) values (1, '2026-04-14 17:55:51', 'purchased', 70);
+insert into `order` (order_id, order_time, status, buyer_id) values (2, '2026-04-14 17:55:51', 'in cart', 86);
+insert into `order` (order_id, order_time, status, buyer_id) values (3, '2026-04-14 17:55:51', 'purchased', 8);
+insert into `order` (order_id, order_time, status, buyer_id) values (4, '2026-04-14 17:55:51', 'in cart', 77);
+insert into `order` (order_id, order_time, status, buyer_id) values (5, '2026-04-14 17:55:51', 'in cart', 51);
+insert into `order` (order_id, order_time, status, buyer_id) values (6, '2026-04-14 17:55:51', 'in cart', 20);
+insert into `order` (order_id, order_time, status, buyer_id) values (7, '2026-04-14 17:55:51', 'purchased', 66);
+insert into `order` (order_id, order_time, status, buyer_id) values (8, '2026-04-14 17:55:51', 'in cart', 78);
+insert into `order` (order_id, order_time, status, buyer_id) values (9, '2026-04-14 17:55:51', 'purchased', 61);
+insert into `order` (order_id, order_time, status, buyer_id) values (10, '2026-04-14 17:55:51', 'processing', 6);
+insert into `order` (order_id, order_time, status, buyer_id) values (11, '2026-04-14 17:55:51', 'shipped', 40);
+insert into `order` (order_id, order_time, status, buyer_id) values (12, '2026-04-14 17:55:51', 'processing', 45);
+insert into `order` (order_id, order_time, status, buyer_id) values (13, '2026-04-14 17:55:51', 'in cart', 5);
+insert into `order` (order_id, order_time, status, buyer_id) values (14, '2026-04-14 17:55:51', 'purchased', 29);
+insert into `order` (order_id, order_time, status, buyer_id) values (15, '2026-04-14 17:55:51', 'shipped', 42);
+insert into `order` (order_id, order_time, status, buyer_id) values (16, '2026-04-14 17:55:51', 'in cart', 34);
+insert into `order` (order_id, order_time, status, buyer_id) values (17, '2026-04-14 17:55:51', 'purchased', 5);
+insert into `order` (order_id, order_time, status, buyer_id) values (18, '2026-04-14 17:55:51', 'shipped', 62);
+insert into `order` (order_id, order_time, status, buyer_id) values (19, '2026-04-14 17:55:51', 'shipped', 11);
+insert into `order` (order_id, order_time, status, buyer_id) values (20, '2026-04-14 17:55:51', 'in cart', 85);
+insert into `order` (order_id, order_time, status, buyer_id) values (21, '2026-04-14 17:55:51', 'purchased', 14);
+insert into `order` (order_id, order_time, status, buyer_id) values (22, '2026-04-14 17:55:51', 'purchased', 90);
+insert into `order` (order_id, order_time, status, buyer_id) values (23, '2026-04-14 17:55:51', 'in cart', 70);
+insert into `order` (order_id, order_time, status, buyer_id) values (24, '2026-04-14 17:55:51', 'purchased', 72);
+insert into `order` (order_id, order_time, status, buyer_id) values (25, '2026-04-14 17:55:51', 'in cart', 77);
+insert into `order` (order_id, order_time, status, buyer_id) values (26, '2026-04-14 17:55:51', 'in cart', 41);
+insert into `order` (order_id, order_time, status, buyer_id) values (27, '2026-04-14 17:55:51', 'processing', 42);
+insert into `order` (order_id, order_time, status, buyer_id) values (28, '2026-04-14 17:55:51', 'processing', 5);
+insert into `order` (order_id, order_time, status, buyer_id) values (29, '2026-04-14 17:55:51', 'shipped', 14);
+insert into `order` (order_id, order_time, status, buyer_id) values (30, '2026-04-14 17:55:51', 'in cart', 53);
+insert into `order` (order_id, order_time, status, buyer_id) values (31, '2026-04-14 17:55:51', 'in cart', 61);
+insert into `order` (order_id, order_time, status, buyer_id) values (32, '2026-04-14 17:55:51', 'purchased', 12);
+insert into `order` (order_id, order_time, status, buyer_id) values (33, '2026-04-14 17:55:51', 'shipped', 3);
+insert into `order` (order_id, order_time, status, buyer_id) values (34, '2026-04-14 17:55:51', 'purchased', 9);
+insert into `order` (order_id, order_time, status, buyer_id) values (35, '2026-04-14 17:55:51', 'processing', 68);
+
+-- order_items
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (1, 2, 60.65, 31, 7);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (2, 9, 63.29, 33, 20);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (3, 5, 19.66, 25, 25);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (4, 1, 79.75, 11, 2);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (5, 8, 1.42, 1, 26);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (6, 10, 84.39, 5, 30);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (7, 5, 37.02, 33, 21);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (8, 7, 63.28, 15, 33);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (9, 6, 5.95, 2, 35);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (10, 9, 95.78, 13, 23);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (11, 5, 51.11, 20, 3);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (12, 10, 87.33, 29, 5);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (13, 10, 47.43, 8, 3);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (14, 3, 99.15, 27, 29);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (15, 10, 8.96, 7, 18);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (16, 6, 75.54, 19, 26);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (17, 1, 2.53, 23, 21);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (18, 5, 27.89, 3, 9);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (19, 5, 79.36, 19, 5);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (20, 7, 58.57, 12, 24);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (21, 4, 84.42, 13, 11);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (22, 8, 46.89, 25, 24);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (23, 3, 26.43, 18, 10);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (24, 8, 11.61, 24, 25);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (25, 7, 19.06, 18, 29);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (26, 3, 29.27, 33, 17);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (27, 5, 32.81, 30, 7);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (28, 9, 47.03, 15, 19);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (29, 3, 79.78, 28, 25);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (30, 10, 73.8, 10, 17);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (31, 8, 7.76, 32, 3);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (32, 6, 50.16, 17, 24);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (33, 1, 88.37, 6, 17);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (34, 5, 26.54, 3, 31);
+insert into order_items (order_item_id, quantity, price_at_purchase, order_id, listing_id) values (35, 3, 69.47, 26, 4);
+>>>>>>> Stashed changes
