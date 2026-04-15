@@ -20,6 +20,7 @@ def get_artists():
         return jsonify(cursor.fetchall()), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_artists: {e}')
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
 
@@ -38,9 +39,10 @@ def get_artist(artist_id):
         artist = cursor.fetchone() 
         if not artist:
             return jsonify({'error': 'Artist not found'}), 404
-    return jsonify(artist), 200
+        return jsonify(artist), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_artist: {e}')
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
 
@@ -52,13 +54,13 @@ def update_artist(artist_id):
         current_app.logger.info(f'PUT /artists/{artist_id}') 
         data = request.get_json()
 
-        # Check artist exists
+        # Check artist existsç
         cursor.execute('SELECT artist_id FROM artist WHERE artist_id = %s', (artist_id,))
         if not cursor.fetchone():
             return jsonify({'error': 'Artist not found'}), 404
         
         # Update user profile fields if provided
-        user_allowed = ['bio', 'photo_link', 'city'. 'state', 'first_name'. 'last_name']
+        user_allowed = ['bio', 'photo_link', 'city', 'state', 'first_name', 'last_name']
         user_fields = [f for f in user_allowed if f in data]
         if user_fields:
             set_clause = ', '.join(f'{f} = %s' for f in user_fields)
@@ -75,7 +77,7 @@ def update_artist(artist_id):
             return jsonify({'error': 'No valid fields to update'}), 400
         
         get_db().commit()
-        return jsonify({'message': 'No valid fields to update'}), 200
+        return jsonify({'message': 'Artist updated successfully'}), 200
     except Error as e:
         current_app.logger.error(f'Database error in update_artist: {e}')
         return jsonify({'error': str(e)}), 500
@@ -89,7 +91,7 @@ def get_application(artist_id):
     try:
         current_app.logger.info(f'GET /artists/{artist_id}/application')
         cursor.execute('''
-            SELECT application.id, status, portfolio_link, submitted_at, reviewed_at, artist_id, reviewer_id
+            SELECT application_id, status, portfolio_link, submitted_at, reviewed_at, artist_id, reviewer_id
             FROM artist_application
             WHERE artist_id = %s
             ORDER BY submitted_at DESC
@@ -161,12 +163,15 @@ def review_application(artist_id):
         # If approved, set the artist's verified flag
         if status == 'approved':
             cursor.execute('UPDATE artist SET is_verified = 1 WHERE artist_id = %s', (artist_id,))
-        
+            cursor.execute('''
+                INSERT INTO artist_status (status, artist_id, reviewer_id)
+                VALUES ('verified', %s, %s)
+            ''', (artist_id, reviewer_id))
         get_db().commit()
         return jsonify({'message': f'Application {status} successfully'}), 200
 
     except Error as e:
         current_app.logger.error(f'Database error in review_application: {e}')
-        return jsonify({'error': str{e}}), 500
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()

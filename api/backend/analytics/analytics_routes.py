@@ -24,7 +24,7 @@ def get_sellers():
         return jsonify(cursor.fetchall()), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_sellers: {e}')
-        return jsonify({'error': str{e}}), 500
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
 
@@ -101,14 +101,14 @@ def get_seller_sales(seller_id):
         total = cursor.fetchone()
 
         return jsonify({
-            'weekly_sales':  weekly['weekly_sales'],
-            'monthly_sales': monthly['monthly_sales'],
-            'annual_sales':  annual['annual_sales'],
-            'total_orders':  total['total_orders']
+            'weekly_sales':  weekly['weekly_sales'] or 0,
+            'monthly_sales': monthly['monthly_sales'] or 0,
+            'annual_sales':  annual['annual_sales'] or 0,
+            'total_orders':  total['total_orders'] or 0
         }), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_seller_sales: {e}')
-        return jsonify({'error': str{e}}), 500
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
 
@@ -139,13 +139,13 @@ def get_dashboard():
         ''')
         system_metrics = cursor.fetchall()
 
-        cursor.execute('SELECT COUNT(*) AS open_alerts FROM system_alerts WHERE status = 'open'')
+        cursor.execute("SELECT COUNT(*) AS open_alerts FROM system_alert WHERE status = 'open'")
         alert_count = cursor.fetchone()
 
         return jsonify({
             'platform_metrics': platform,
             'recent_system_metrics': system_metrics,
-            'open_alert_count', alert_count
+            'open_alert_count': alert_count,
         }), 200
 
     except Error as e:
@@ -165,35 +165,39 @@ def get_listing_analytics():
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
 
-        query = '''
-            SELECT l.listing_type, 
-                    COUNT(DISTINCT l.listing_id) AS total_listings,
-                    COUNT(DISTINCT oi.order_item_id) AS total_orders,
-                    SUM(oi.price_at_purchase * oi_quantity) AS total_revenue,
-                    AVG(l.price) AS avg_price
+        # Build date conditions for the LEFT JOIN so listings with no orders in the date range are still included
+        date_clause = ''
+        params = []
+        if start_date:
+            date_clause += ' AND o.order_time >= %s'
+            params.append(start_date)
+        if end_date:
+            date_clause += ' AND o.order_time <= %s'
+            params.append(end_date)
+
+        query = f'''
+            SELECT l.listing_type, COUNT(DISTINCT l.listing_id) AS total_listings, COUNT(DISTINCT oi.order_item_id) AS total_orders,
+                    SUM(oi.price_at_purchase * oi.quantity) AS total_revenue, AVG(l.price) AS avg_price
             FROM listing l
             LEFT JOIN order_items oi ON l.listing_id = oi.listing_id
-            LEFT JOIN `order` o ON oi.order_id = o.order_id
+            LEFT JOIN `order` o ON oi.order_id = o.order_id {date_clause}
             LEFT JOIN item i ON l.item_id = i.item_id
             WHERE 1 = 1
         '''
-        params = []
         if listing_type:
             query += ' AND l.listing_type = %s'
             params.append(listing_type)
         if category_id:
             query += ' AND i.category_id = %s'
             params.append(category_id)
-        if start_date:
-            query += ' AND o.order_time >= %s'
-            params.append(start_date)
-        if end_date:
-            query += ' AND o.order_time <= %s'
-            params.append(end_date)
         query += ' GROUP BY l.listing_type'
         
         cursor.execute(query, params)
-        return jsonify(cursor.fetchall()), 200
+        results = cursor.fetchall()
+        for row in results:
+            if row.get('total_revenue') is None:
+                row['total_revenue'] = 0
+        return jsonify(results), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_listing_analytics: {e}')
         return jsonify({'error': str(e)}), 500
@@ -206,7 +210,7 @@ def get_top_sellers():
     cursor = get_db().cursor(dictionary=True)
     try:
         current_app.logger.info('GET /analytics/sellers')
-        limit = request.args.get('limit', 10)
+        limit = int(request.args.get('limit', 10))
 
         cursor.execute('''
             SELECT l.artist_id, u.username, SUM(oi.price_at_purchase * oi.quantity) AS total_revenue,
@@ -219,7 +223,7 @@ def get_top_sellers():
             GROUP BY l.artist_id, u.username
             ORDER BY total_revenue DESC
             LIMIT %s
-        ''' (limit,))
+        ''', (limit,))
         return jsonify(cursor.fetchall()), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_top_sellers: {e}')
@@ -238,7 +242,7 @@ def get_retention():
 
         query = '''
             SELECT active_users, churned_users, retained_users, retention_rate, turnover_rate, conversion_rate, recorded_at
-            FROM platform metrics
+            FROM platform_metrics
             WHERE 1 = 1
         '''
         params = []
@@ -250,7 +254,7 @@ def get_retention():
             params.append(end_date)
         query += ' ORDER BY recorded_at DESC'
         cursor.execute(query, params)
-        return jsonify(cursor.fatchall()), 200
+        return jsonify(cursor.fetchall()), 200 
     except Error as e:
         current_app.logger.error(f'Database error in get_retention: {e}')
         return jsonify({'error': str(e)}), 500
@@ -268,7 +272,7 @@ def get_trending():
             FROM user_activity
             WHERE activity_type = 'search' AND search_term IS NOT NULL
             GROUP BY search_term
-            ORDER BY search_COUNT DESC
+            ORDER BY search_count DESC
             LIMIT 10
         ''')
         trending_searches = cursor.fetchall()
@@ -324,7 +328,7 @@ def get_alerts():
         return jsonify(cursor.fetchall()), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_alerts: {e}')
-        return jsonify({'error'L str(e)}), 500
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
 
@@ -335,7 +339,7 @@ def get_alert(alert_id):
     try:
         current_app.logger.info(f'GET /system/alerts/{alert_id}')
         cursor.execute('''
-            SLECT alert_id, alert_type, severity, status, message, created_at, resolved_at
+            SELECT alert_id, alert_type, severity, status, message, created_at, resolved_at
             FROM system_alert
             WHERE alert_id = %s
         ''', (alert_id,))
@@ -345,7 +349,7 @@ def get_alert(alert_id):
         return jsonify(alert), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_alert: {e}')
-        return jsonify({'error': str{e}}), 500
+        return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
 
