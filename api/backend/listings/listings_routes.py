@@ -44,7 +44,7 @@ def get_listings():
             params.append(min_price)
         if max_price:
             query += ' AND l.price <= %s'
-            params.append(max_price)
+            params.append(max_price)git 
         query += ' ORDER BY l.post_time DESC'
 
         cursor.execute(query, params)
