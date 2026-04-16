@@ -74,7 +74,7 @@ try:
                     # Add a button to view full profile
                     if st.button("View Full Profile", key=f"view_{ngo['NGO_ID']}"):
                         st.session_state["selected_ngo_id"] = ngo["NGO_ID"]
-                        st.switch_page("pages/16_NGO_Profile.py")
+                        st.switch_page("pages/66_NGO_Profile.py")
 
     else:
         st.error("Failed to fetch NGO data from the API")

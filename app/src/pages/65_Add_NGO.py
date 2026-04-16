@@ -32,7 +32,7 @@ def show_success_dialog(ngo_name):
         if st.button("Return to NGO Directory", use_container_width=True):
             st.session_state.show_success_modal = False
             st.session_state.success_ngo_name = ""
-            st.switch_page("pages/14_NGO_Directory.py")
+            st.switch_page("pages/64_NGO_Directory.py")
     
     with col2:
         if st.button("Add Another NGO", use_container_width=True):
@@ -104,4 +104,4 @@ if st.session_state.show_success_modal:
 
 # Add a button to return to the NGO Directory
 if st.button("Return to NGO Directory"):
-    st.switch_page("pages/14_NGO_Directory.py")
+    st.switch_page("pages/64_NGO_Directory.py")

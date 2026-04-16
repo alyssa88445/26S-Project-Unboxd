@@ -15,7 +15,7 @@ ngo_id = st.session_state.get("selected_ngo_id")
 if ngo_id is None:
     st.error("No NGO selected")
     if st.button("Return to NGO Directory"):
-        st.switch_page("pages/14_NGO_Directory.py")
+        st.switch_page("pages/64_NGO_Directory.py")
 else:
     # API endpoint
     API_URL = f"http://web-api:4000/ngo/ngos/{ngo_id}"
@@ -83,4 +83,4 @@ if st.button("Return to NGO Directory"):
     # Clear the selected NGO ID from session state
     if "selected_ngo_id" in st.session_state:
         del st.session_state["selected_ngo_id"]
-    st.switch_page("pages/14_NGO_Directory.py")
+    st.switch_page("pages/64_NGO_Directory.py")
