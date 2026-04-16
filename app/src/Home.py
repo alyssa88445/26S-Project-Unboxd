@@ -58,6 +58,21 @@ if st.button("Login as Systems Admin",
     logger.info("Logging in as Systems Administrator (Jordan Kim)")
     st.switch_page("pages/00_Admin_Home.py")
 
+# Persona 2 - Platform Marketer (Adam Smith)
+marketer_user = st.selectbox(
+    "Platform Marketer",
+    options=["Adam Smith (Platform Marketer)"],
+    key="marketer_select",
+)
+if st.button("Login as Platform Marketer",
+             type="primary",
+             use_container_width=True):
+    st.session_state["authenticated"] = True
+    st.session_state["role"] = "platform_marketer"
+    st.session_state["first_name"] = "Adam"
+    logger.info("Logging in as Platform Marketer (Adam Smith)")
+    st.switch_page("pages/10_Marketer_Home.py")
+
 st.divider()
 
 # For each of the user personas for which we are implementing
