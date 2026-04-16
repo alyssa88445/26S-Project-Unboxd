@@ -33,8 +33,32 @@ SideBarLinks(show_home=True)
 # ***************************************************
 
 logger.info("Loading the Home page of the app")
-st.title('CS 3200 Project Template')
-st.write('#### Hi! As which user would you like to log in?')
+st.title('Unboxd')
+st.write('#### A data-driven marketplace connecting blind-box artists with collectors.')
+
+
+# Unboxd Users
+st.divider()
+st.write('## Unboxd Users')
+st.write('#### Select a persona and click login:')
+
+# Persona 1 - Systems Administrator (Jordan Kim)
+admin_user = st.selectbox(
+    "Systems Administrator",
+    options=["Jordan Kim (Systems Admin)"],
+    key="admin_select",
+)
+if st.button("Login as Systems Admin",
+             type="primary",
+             use_container_width=True):
+    st.session_state["authenticated"] = True
+    st.session_state["role"] = "systems_admin"
+    st.session_state["first_name"] = "Jordan"
+    st.session_state["admin_id"] = 1  # Jordan Kim's admin_id per DDL
+    logger.info("Logging in as Systems Administrator (Jordan Kim)")
+    st.switch_page("pages/00_Admin_Home.py")
+
+st.divider()
 
 # For each of the user personas for which we are implementing
 # functionality, we put a button on the screen that the user
@@ -53,7 +77,7 @@ if st.button("Act as John, a Political Strategy Advisor",
     # finally, we ask streamlit to switch to another page, in this case, the
     # landing page for this particular user type
     logger.info("Logging in as Political Strategy Advisor Persona")
-    st.switch_page('pages/00_Pol_Strat_Home.py')
+    st.switch_page('pages/50_Pol_Strat_Home.py')
 
 if st.button('Act as Mohammad, a USAID Worker',
              type='primary',
@@ -61,7 +85,7 @@ if st.button('Act as Mohammad, a USAID Worker',
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'usaid_worker'
     st.session_state['first_name'] = 'Mohammad'
-    st.switch_page('pages/10_USAID_Worker_Home.py')
+    st.switch_page('pages/60_USAID_Worker_Home.py')
 
 if st.button('Act as System Administrator',
              type='primary',
@@ -69,4 +93,4 @@ if st.button('Act as System Administrator',
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'administrator'
     st.session_state['first_name'] = 'SysAdmin'
-    st.switch_page('pages/20_Admin_Home.py')
+    st.switch_page('pages/70_Sample_Admin_Home.py')
