@@ -153,7 +153,7 @@ st.subheader("Breakdown by Listing Type")
 bar_col1, bar_col2 = st.columns(2)
 with bar_col1:
     st.write("**Revenue**")
-    st.bar_chart(df.set_index("listing_type_display")["total_revenue"])
+    st.bar_chart(df.set_index("listing_type_display")["total_revenue"], horizontal=True)
 with bar_col2:
     st.write("**Orders**")
-    st.bar_chart(df.set_index("listing_type_display")["total_orders"])
+    st.bar_chart(df.set_index("listing_type_display")["total_orders"], horizontal=True)

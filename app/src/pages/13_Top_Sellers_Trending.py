@@ -114,7 +114,7 @@ with left:
         s_df = pd.DataFrame(searches)
         s_df["search_count"] = pd.to_numeric(s_df["search_count"], errors="coerce").fillna(0).astype(int)
         st.dataframe(s_df, use_container_width=True, hide_index=True)
-        st.bar_chart(s_df.set_index("search_term")["search_count"])
+        st.bar_chart(s_df.set_index("search_term")["search_count"], horizontal=True)
     else:
         st.info("No search activity recorded yet.")
 
@@ -132,6 +132,6 @@ with right:
             columns={"listing_type_display": "listing_type"}
         )
         st.dataframe(display_df, use_container_width=True, hide_index=True)
-        st.bar_chart(l_df.set_index("title")["like_count"])
+        st.bar_chart(l_df.set_index("title")["like_count"], horizontal=True)
     else:
         st.info("No listings have been liked yet.")
