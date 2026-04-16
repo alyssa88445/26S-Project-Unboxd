@@ -47,6 +47,32 @@ def fraud_reports_nav():
     )
 
 
+# - Role: platform_marketer (Adam Smith - Unboxd Persona 2)
+
+def marketer_home_nav():
+    st.sidebar.page_link(
+        "pages/10_Marketer_Home.py", label="Marketer Home", icon="📈"
+    )
+
+
+def marketer_dashboard_nav():
+    st.sidebar.page_link(
+        "pages/11_Marketer_Dashboard.py", label="KPI Dashboard", icon="📉"
+    )
+
+
+def listing_analytics_nav():
+    st.sidebar.page_link(
+        "pages/12_Listing_Analytics.py", label="Listing Analytics", icon="🗂️"
+    )
+
+
+def top_sellers_trending_nav():
+    st.sidebar.page_link(
+        "pages/13_Top_Sellers_Trending.py", label="Top Sellers & Trending", icon="🔥"
+    )
+
+
 # ---- Role: pol_strat_advisor (sample/demo, retained as backup) --------------
 
 def pol_strat_home_nav():
@@ -137,6 +163,12 @@ def SideBarLinks(show_home=False):
             artist_applications_nav()
             listing_moderation_nav()
             fraud_reports_nav()
+
+        if st.session_state["role"] == "platform_marketer":
+            marketer_home_nav()
+            marketer_dashboard_nav()
+            listing_analytics_nav()
+            top_sellers_trending_nav()
 
         # - Sample/demo personas (retained as backup)
         if st.session_state["role"] == "pol_strat_advisor":
