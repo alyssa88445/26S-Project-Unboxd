@@ -15,7 +15,7 @@ API_BASE = "http://web-api:4000"
 admin_id = st.session_state.get("admin_id", 1)
 
 VALID_STATUSES = ["pending", "active", "archive", "approved", "rejected", "flagged"]
-LISTING_TYPES = ["standard", "auction", "limited_edition"]
+LISTING_TYPES = ["standard", "limited"]
 
 
 @st.dialog("Confirm Deletion")
@@ -206,7 +206,7 @@ with drops_tab:
     try:
         drops_resp = requests.get(
             f"{API_BASE}/listings",
-            params={"type": "limited_edition"},
+            params={"type": "limited"},
             timeout=10,
         )
         if drops_resp.status_code != 200:
