@@ -53,7 +53,7 @@ with f_col3:
 with f_col4:
     type_filter = st.selectbox(
         "Listing type",
-        options=["All", "standard", "auction", "limited_edition"],
+        options=["All", "standard", "limited"],
         format_func=lambda x: x.replace("_", " ").title(),
     )
 
