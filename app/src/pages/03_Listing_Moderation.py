@@ -120,6 +120,22 @@ with moderate_tab:
                 except requests.exceptions.RequestException:
                     pass
 
+                purchases = []
+                try:
+                    r = requests.get(f"{API_BASE}/listings/{lid}/bids", timeout=10)
+                    if r.status_code == 200:
+                        purchases = r.json()
+                except requests.exceptions.RequestException:
+                    pass
+
+                if purchases:
+                    st.write("**Purchase history:**")
+                    for p in purchases:
+                        st.caption(
+                            f"• {p.get('order_time')} - {p.get('buyer_username')} "
+                            f"bought {p.get('quantity')} at ${p.get('price_at_purchase')}"
+                        )
+
             with act_col:
                 st.markdown("#### Actions")
 
