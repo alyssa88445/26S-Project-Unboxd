@@ -178,13 +178,20 @@ for label, tab in zip(tab_labels, tab_objs):
                 f"buyer: {buyer} - ${total}"
             )
             with st.expander(header):
-                st.write(f"**Reason:** {report.get('reason')}")
-                st.write(f"**Created:** {report.get('created_at')}")
-                if report.get("resolved_at"):
-                    st.write(f"**Resolved:** {report.get('resolved_at')}")
-                st.write(f"**Reviewer (admin_id):** {report.get('reviewer_id')}")
+                detail = report
+                try:
+                    r = requests.get(f"{API_BASE}/fraud-reports/{report['report_id']}", timeout=10)
+                    if r.status_code == 200:
+                        detail = r.json()
+                except requests.exceptions.RequestException:
+                    pass
 
-                # Order items detail (GET /orders/{id})
+                st.write(f"**Reason:** {detail.get('reason')}")
+                st.write(f"**Created:** {detail.get('created_at')}")
+                if detail.get("resolved_at"):
+                    st.write(f"**Resolved:** {detail.get('resolved_at')}")
+                st.write(f"**Reviewer (admin_id):** {detail.get('reviewer_id')}")
+
                 try:
                     order_detail = requests.get(
                         f"{API_BASE}/orders/{report['order_id']}", timeout=10
