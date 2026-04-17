@@ -94,9 +94,19 @@ try:
                 with st.expander(
                     f"{color} [{severity.upper()}] {alert.get('alert_type')} - {alert_status.title()} - {alert.get('created_at')}"
                 ):
-                    st.write(f"**Message:** {alert.get('message', '(no message)')}")
-                    st.write(f"**Status:** {alert_status.title()}")
-                    st.write(f"**Alert ID:** {alert.get('alert_id')}")
+                    detail = alert
+                    try:
+                        r = requests.get(f"{API_BASE}/system/alerts/{alert['alert_id']}", timeout=10)
+                        if r.status_code == 200:
+                            detail = r.json()
+                    except requests.exceptions.RequestException:
+                        pass
+
+                    st.write(f"**Message:** {detail.get('message', '(no message)')}")
+                    st.write(f"**Status:** {detail.get('status', alert_status).title()}")
+                    st.write(f"**Alert ID:** {detail.get('alert_id')}")
+                    if detail.get("resolved_at"):
+                        st.write(f"**Resolved at:** {detail.get('resolved_at')}")
 
                     if alert_status != "resolved":
                         btn_col1, btn_col2, _ = st.columns([1, 1, 3])
