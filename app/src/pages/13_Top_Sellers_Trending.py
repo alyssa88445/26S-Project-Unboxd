@@ -132,6 +132,11 @@ with right:
             columns={"listing_type_display": "listing_type"}
         )
         st.dataframe(display_df, use_container_width=True, hide_index=True)
-        st.bar_chart(l_df.set_index("title")["like_count"], horizontal=True)
+        title_counts = l_df.groupby("title")["title"].transform("count")
+        dup_index = l_df.groupby("title").cumcount() + 1
+        l_df["chart_label"] = l_df["title"].where(
+            title_counts == 1, l_df["title"] + " (" + dup_index.astype(str) + ")"
+        )
+        st.bar_chart(l_df.set_index("chart_label")["like_count"], horizontal=True)
     else:
         st.info("No listings have been liked yet.")
