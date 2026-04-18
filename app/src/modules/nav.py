@@ -73,17 +73,17 @@ def top_sellers_trending_nav():
     )
 
 
-# ---- Role: pol_strat_advisor (sample/demo, retained as backup) --------------
+# ---- Role: artist (Tina Gordon - Unboxd Persona 4)
 
-def pol_strat_home_nav():
+def artist_home_nav():
     st.sidebar.page_link(
-        "pages/50_Pol_Strat_Home.py", label="Political Strategist Home", icon="👤"
+        "pages/30_Artist_Home.py", label="Artist Home", icon="🏠"
     )
 
 
-def world_bank_viz_nav():
+def artist_profile_nav():
     st.sidebar.page_link(
-        "pages/51_World_Bank_Viz.py", label="World Bank Visualization", icon="🏦"
+        "pages/31_Artist_Profile.py", label="Artist Profile", icon="😊"
     )
 
 
