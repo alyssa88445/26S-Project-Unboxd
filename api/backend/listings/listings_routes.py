@@ -19,17 +19,8 @@ def get_listings():
         max_price = request.args.get('max_price')
         category = request.args.get('category') # NEW!!
 
-        # NEW!! - added 2 parts
         query = '''
             SELECT l.listing_id, l.title, l.quantity, l.price, l.status, l.listing_type, l.post_time,
-<<<<<<< Updated upstream
-                    l.item_id, l.artist_id, i.name AS item_name, i.image_link, i.size,
-                    u.username AS artist_username, c.name AS category_name
-            FROM listing l
-            JOIN item i ON l.item_id = i.item_id
-            JOIN user u ON l.artist_id = u.user_id
-            LEFT JOIN category c ON i.category_id = c.category_id
-=======
                 l.item_id, l.artist_id, i.name AS item_name, i.image_link, i.description, i.size,
                 c.name AS category,
                 u.username AS artist_username,
@@ -42,7 +33,6 @@ def get_listings():
             LEFT JOIN order_items oi ON oi.listing_id = l.listing_id
             LEFT JOIN (SELECT listing_id, COUNT(*) AS like_count FROM likes GROUP BY listing_id
                 ) lk ON lk.listing_id = l.listing_id
->>>>>>> Stashed changes
             WHERE 1 = 1
         '''
         params = []
