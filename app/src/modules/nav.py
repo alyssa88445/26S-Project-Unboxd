@@ -170,6 +170,10 @@ def SideBarLinks(show_home=False):
             listing_analytics_nav()
             top_sellers_trending_nav()
 
+        if st.session_state["role"] == "artist":
+            artist_home_nav()
+            artist_applications_nav()
+
         # - Sample/demo personas (retained as backup)
         if st.session_state["role"] == "pol_strat_advisor":
             pol_strat_home_nav()

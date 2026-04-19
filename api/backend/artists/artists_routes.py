@@ -12,7 +12,7 @@ def get_artists():
     try:
         current_app.logger.info('GET /artists') 
         cursor.execute('''
-            SELECT a.artist_id, u.username, u.first_name, u.last_name, u.bio, u.photo_link, u.city, u.state, a.is_verified
+            SELECT a.artist_id, u.username, u.first_name, u.last_name, u.gender, u.dob, u.phone, u.created_at, u.bio, u.photo_link, u.street_address, u.city, u.state, a.is_verified
             FROM artist a
             JOIN user u ON a.artist_id = u.user_id
             ORDER BY u.username
@@ -31,7 +31,7 @@ def get_artist(artist_id):
     try:
         current_app.logger.info(f'GET /artists/{artist_id}') 
         cursor.execute('''
-            SELECT a.artist_id, u.username, u.first_name, u.last_name, u.bio, u.photo_link, u.city, u.state, a.is_verified
+            SELECT a.artist_id, u.username, u.first_name, u.last_name, u.gender, u.dob, u.phone, u.created_at, u.bio, u.photo_link, u.street_address, u.city, u.state, a.is_verified
             FROM artist a
             JOIN user u ON a.artist_id = u.user_id
             WHERE a.artist_id = %s
@@ -60,7 +60,7 @@ def update_artist(artist_id):
             return jsonify({'error': 'Artist not found'}), 404
         
         # Update user profile fields if provided
-        user_allowed = ['bio', 'photo_link', 'city', 'state', 'first_name', 'last_name']
+        user_allowed = ['bio', 'photo_link', 'street_address', 'phone', 'city', 'state', 'first_name', 'last_name']
         user_fields = [f for f in user_allowed if f in data]
         if user_fields:
             set_clause = ', '.join(f'{f} = %s' for f in user_fields)
@@ -172,6 +172,40 @@ def review_application(artist_id):
 
     except Error as e:
         current_app.logger.error(f'Database error in review_application: {e}')
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
+
+# GET /artists/{id}/email - get primary email
+@artists.route("/artists/<int:artist_id>/email", methods=["GET"])
+def get_artist_email(artist_id):
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        cursor.execute('''
+            SELECT email FROM user_email 
+            WHERE user_id = %s AND is_primary = 1
+            LIMIT 1
+        ''', (artist_id,))
+        result = cursor.fetchone()
+        return jsonify(result or {}), 200
+    except Error as e:
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
+
+# PUT /artists/{id}/email - update primary email
+@artists.route("/artists/<int:artist_id>/email", methods=["PUT"])
+def update_artist_email(artist_id):
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        data = request.get_json()
+        cursor.execute('''
+            UPDATE user_email SET email = %s 
+            WHERE user_id = %s AND is_primary = 1
+        ''', (data.get("email"), artist_id))
+        get_db().commit()
+        return jsonify({'message': 'Email updated'}), 200
+    except Error as e:
         return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()

@@ -250,9 +250,9 @@ Values
 (35, 'Patty', 'Rugieri', 'manager');
 
 -- user
-INSERT INTO user (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) 
+INSERT INTO `user` (user_id, username, first_name, last_name, phone, gender, street_address, city, state, role, dob, created_at, photo_link) 
 Values 
-(1, 'gtarry0', 'Goddard', 'Tarry', '318-516-5691', 'Male', '03558 Loomis Hill', 'Monroe', 'Louisiana', 'user', '1935-07-25', '2026-04-13 11:16:13', null),
+(1, 'tgordon', 'Tina', 'Gordon', '318-516-5691', 'Male', '03558 Loomis Hill', 'Brooklyn', 'New York', 'user', '1935-07-25', '2026-04-13 11:16:13', null),
 (2, 'gsinderson1', 'Gal', 'Sinderson', '502-287-1193', 'Male', '3435 Green Terrace', 'Louisville', 'Kentucky', 'user', null, '2026-04-13 11:16:13', 'https://robohash.org/recusandaedistinctioimpedit.png?size=50x50&set=set1'),
 (3, 'mhandford2', 'Michelle', 'Handford', '623-740-6731', 'Female', '00540 Grasskamp Pass', 'Phoenix', 'Arizona', 'user', null, '2026-04-13 11:16:13', 'https://robohash.org/eaquevoluptatemdeserunt.png?size=50x50&set=set1'),
 (4, 'edanels3', 'Evita', 'Danels', '317-399-6065', 'Female', '8103 Buell Plaza', 'Indianapolis', 'Indiana', 'user', '1940-12-12', '2026-04-13 11:16:13', 'https://robohash.org/isteautomnis.png?size=50x50&set=set1'),
