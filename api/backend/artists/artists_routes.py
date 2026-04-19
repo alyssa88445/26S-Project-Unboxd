@@ -209,7 +209,7 @@ def update_artist_email(artist_id):
         return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
-        
+
 # GET /artists/{id}/items - get all items for an artist
 @artists.route("/artists/<int:artist_id>/items", methods=["GET"])
 def get_artist_items(artist_id):
@@ -236,21 +236,10 @@ def get_artist_listings(artist_id):
     try:
         current_app.logger.info(f'GET /artists/{artist_id}/listings')
         cursor.execute('''
-            SELECT
-                l.listing_id,
-                l.title,
-                l.price,
-                l.quantity,
-                l.status,
-                l.listing_type,
-                l.post_time,
-                i.name AS item_name,
-                i.image_link,
-                i.description,
-                i.size,
-                c.name AS category,
-                COUNT(DISTINCT lk.user_id) AS like_count,
-                COALESCE(SUM(oi.quantity * oi.price_at_purchase), 0) AS total_sales
+            SELECT l.listing_id, l.title, l.price, l.quantity, l.status, l.listing_type, 
+                       l.post_time, i.name AS item_name, i.image_link, i.description, i.size,
+                       c.name AS category, COUNT(DISTINCT lk.user_id) AS like_count,
+                       COALESCE(SUM(oi.quantity * oi.price_at_purchase), 0) AS total_sales
             FROM listing l
             JOIN item i ON l.item_id = i.item_id
             LEFT JOIN category c ON i.category_id = c.category_id

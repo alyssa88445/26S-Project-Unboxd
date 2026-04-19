@@ -451,7 +451,7 @@ INSERT INTO item (item_id, name, description, size, image_link, artist_id, categ
 Values 
 (1, 'Super Villains', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'S', 'http://dummyimage.com/196x100.png/ff4444/ffffff', 14, 7),
 (2, 'Circus Circus', null, 'L', 'http://dummyimage.com/170x100.png/cc0000/ffffff', 34, 15),
-(3, 'Enchanted Forest', 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', 'L', 'http://dummyimage.com/148x100.png/cc0000/ffffff', 34, 2),
+(3, 'Enchanted Forest', 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', 'L', 'http://dummyimage.com/148x100.png/cc0000/ffffff', 1, 2),
 (4, 'Artistic Masterpieces', null, 'M', 'http://dummyimage.com/235x100.png/5fa2dd/ffffff', 6, 18),
 (5, 'Cyberpunk City', 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'L', 'http://dummyimage.com/225x100.png/5fa2dd/ffffff', 3, 25),
 (6, 'Mythical Creatures', 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', 'M', 'http://dummyimage.com/240x100.png/dddddd/000000', 58, 4),
@@ -483,7 +483,7 @@ Values
 (32, 'Toy Box Treasures', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', 'S', 'http://dummyimage.com/173x100.png/5fa2dd/ffffff', 57, 4),
 (33, 'Pirate Adventure', 'In congue. Etiam justo. Etiam pretium iaculis justo.', 'L', 'http://dummyimage.com/159x100.png/ff4444/ffffff', 50, 25),
 (34, 'Jurassic Dino World', 'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.', 'L', 'http://dummyimage.com/140x100.png/ff4444/ffffff', 59, 26),
-(35, 'Mythical Creatures', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 'S', 'http://dummyimage.com/218x100.png/cc0000/ffffff', 38, 19);
+(35, 'Mythical Creatures', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 'S', 'http://dummyimage.com/218x100.png/cc0000/ffffff', 1, 19);
 
 -- variants
 INSERT INTO variants (item_id, name, pull_rate) 
@@ -551,42 +551,42 @@ Values
 
 -- listing
 INSERT INTO listing (listing_id, title, quantity, price, status, listing_type, post_time, item_id, artist_id)
-Values
-(1, 'Sci-Fi Robot Model', 9, 342.03, 'active', 'standard', '2026-04-13 12:17:37', 35, 25),
-(2, 'Vintage Porcelain Doll', 46, 93.06, 'active', 'standard', '2026-04-13 12:17:37', 3, 28),
-(3, 'Miniature Samurai Warrior Figurine', 99, 767.45, 'active', 'standard', '2026-04-13 12:17:37', 25, 52),
-(4, 'Gothic Gargoyle Figurine', 25, 997.82, 'pending', 'limited', '2026-04-13 12:17:37', 17, 4),
-(5, 'Sci-Fi Robot Model', 87, 296.86, 'active', 'standard', '2026-04-13 12:17:37', 4, 39),
-(6, 'Animal Sculpture Collection', 92, 687.89, 'active', 'standard', '2026-04-13 12:17:37', 3, 28),
-(7, 'Fairy Garden Figurine Set', 12, 16.22, 'active', 'standard', '2026-04-13 12:17:37', 32, 30),
-(8, 'Fairy Garden Figurine Set', 122, 769.14, 'active', 'standard', '2026-04-13 12:17:37', 18, 1),
-(9, 'Superhero Action Figure', 86, 60.92, 'pending', 'limited', '2026-04-13 12:17:37', 10, 54),
-(10, 'Animal Sculpture Collection', 28, 122.64, 'active', 'standard', '2026-04-13 12:17:37', 31, 27),
-(11, 'Mythical Creature Statue', 35, 863.77, 'rejected', 'standard', '2026-04-13 12:17:37', 32, 30),
-(12, 'Sci-Fi Robot Model', 81, 818.32, 'pending', 'standard', '2026-04-13 12:17:37', 17, 4),
-(13, 'Animal Sculpture Collection', 14, 330.98, 'flagged', 'standard', '2026-04-13 12:17:37', 25, 52),
-(14, 'Fairy Garden Figurine Set', 46, 202.98, 'pending', 'limited', '2026-04-13 12:17:37', 3, 28),
-(15, 'Miniature Samurai Warrior Figurine', 34, 701.83, 'archive', 'standard', '2026-04-13 12:17:37', 29, 44),
-(16, 'Gothic Gargoyle Figurine', 115, 37.41, 'archive', 'standard', '2026-04-13 12:17:37', 28, 58),
-(17, 'Vintage Porcelain Doll', 40, 914.38, 'rejected', 'standard', '2026-04-13 12:17:37', 28, 58),
-(18, 'Gothic Gargoyle Figurine', 96, 327.56, 'archive', 'standard', '2026-04-13 12:17:37', 7, 40),
-(19, 'Mystical Dragon Figurine', 74, 454.41, 'active', 'limited', '2026-04-13 12:17:37', 16, 45),
-(20, 'Gothic Gargoyle Figurine', 57, 226.8, 'active', 'standard', '2026-04-13 12:17:37', 13, 37),
-(21, 'Animal Sculpture Collection', 14, 61.31, 'active', 'standard', '2026-04-13 12:17:37', 17, 4),
-(22, 'Animal Sculpture Collection', 52, 979.34, 'rejected', 'standard', '2026-04-13 12:17:37', 25, 52),
-(23, 'Mythical Creature Statue', 1, 925.04, 'pending', 'limited', '2026-04-13 12:17:37', 3, 28),
-(24, 'Mystical Dragon Figurine', 29, 625.39, 'archive', 'standard', '2026-04-13 12:17:37', 29, 44),
-(25, 'Sci-Fi Robot Model', 107, 495.65, 'active', 'standard', '2026-04-13 12:17:37', 19, 45),
-(26, 'Miniature Samurai Warrior Figurine', 43, 885.94, 'flagged', 'standard', '2026-04-13 12:17:37', 34, 6),
-(27, 'Animal Sculpture Collection', 58, 818.54, 'active', 'standard', '2026-04-13 12:17:37', 8, 16),
-(28, 'Mystical Dragon Figurine', 139, 248.39, 'archive', 'limited', '2026-04-13 12:17:37', 31, 27),
-(29, 'Medieval Knight Bust', 116, 171.49, 'active', 'standard', '2026-04-13 12:17:37', 22, 31),
-(30, 'Miniature Samurai Warrior Figurine', 99, 862.36, 'archive', 'standard', '2026-04-13 12:17:37', 29, 44),
-(31, 'Mythical Creature Statue', 71, 351.78, 'active', 'standard', '2026-04-13 12:17:37', 30, 43),
-(32, 'Gothic Gargoyle Figurine', 149, 268.87, 'pending', 'limited', '2026-04-13 12:17:37', 7, 40),
-(33, 'Superhero Action Figure', 125, 47.46, 'active', 'standard', '2026-04-13 12:17:37', 7, 40),
-(34, 'Miniature Samurai Warrior Figurine', 142, 202.36, 'pending', 'standard', '2026-04-13 12:17:37', 30, 43),
-(35, 'Fairy Garden Figurine Set', 23, 601.9, 'archive', 'limited', '2026-04-13 12:17:37', 26, 8);
+VALUES
+(1, 'Mythical Creatures', 9, 342.03, 'active', 'standard', '2026-04-13 12:17:37', 35, 1),
+(2, 'Enchanted Forest', 46, 93.06, 'active', 'standard', '2026-04-13 12:17:37', 3, 1),
+(3, 'Pirate Adventure', 99, 767.45, 'active', 'standard', '2026-04-13 12:17:37', 25, 32),
+(4, 'Robot Revolution', 25, 997.82, 'pending', 'limited', '2026-04-13 12:17:37', 17, 5),
+(5, 'Artistic Masterpieces', 87, 296.86, 'active', 'standard', '2026-04-13 12:17:37', 4, 6),
+(6, 'Enchanted Forest', 92, 687.89, 'active', 'standard', '2026-04-13 12:17:37', 3, 34),
+(7, 'Toy Box Treasures', 12, 16.22, 'active', 'standard', '2026-04-13 12:17:37', 32, 57),
+(8, 'Medieval Knights', 122, 769.14, 'active', 'standard', '2026-04-13 12:17:37', 18, 47),
+(9, 'Ancient Egypt', 86, 60.92, 'pending', 'limited', '2026-04-13 12:17:37', 10, 22),
+(10, 'Tech Gadgets', 28, 122.64, 'active', 'standard', '2026-04-13 12:17:37', 31, 4),
+(11, 'Toy Box Treasures', 35, 863.77, 'rejected', 'standard', '2026-04-13 12:17:37', 32, 57),
+(12, 'Robot Revolution', 81, 818.32, 'pending', 'standard', '2026-04-13 12:17:37', 17, 5),
+(13, 'Pirate Adventure', 14, 330.98, 'flagged', 'standard', '2026-04-13 12:17:37', 25, 32),
+(14, 'Enchanted Forest', 46, 202.98, 'pending', 'limited', '2026-04-13 12:17:37', 3, 34),
+(15, 'Pirate''s Cove', 34, 701.83, 'archive', 'standard', '2026-04-13 12:17:37', 29, 9),
+(16, 'Fairy Tale Castle', 115, 37.41, 'archive', 'standard', '2026-04-13 12:17:37', 28, 25),
+(17, 'Fairy Tale Castle', 40, 914.38, 'rejected', 'standard', '2026-04-13 12:17:37', 28, 25),
+(18, 'Tech Gadgets', 96, 327.56, 'archive', 'standard', '2026-04-13 12:17:37', 7, 6),
+(19, 'Ancient Egypt', 74, 454.41, 'active', 'limited', '2026-04-13 12:17:37', 16, 11),
+(20, 'Dinosaur Discovery', 57, 226.8, 'active', 'standard', '2026-04-13 12:17:37', 13, 35),
+(21, 'Robot Revolution', 14, 61.31, 'active', 'standard', '2026-04-13 12:17:37', 17, 5),
+(22, 'Pirate Adventure', 52, 979.34, 'rejected', 'standard', '2026-04-13 12:17:37', 25, 32),
+(23, 'Enchanted Forest', 1, 925.04, 'pending', 'limited', '2026-04-13 12:17:37', 3, 34),
+(24, 'Pirate''s Cove', 29, 625.39, 'archive', 'standard', '2026-04-13 12:17:37', 29, 9),
+(25, 'Haunted Mansion', 107, 495.65, 'active', 'standard', '2026-04-13 12:17:37', 19, 29),
+(26, 'Jurassic Dino World', 43, 885.94, 'flagged', 'standard', '2026-04-13 12:17:37', 34, 59),
+(27, 'Foodie Fun', 58, 818.54, 'active', 'standard', '2026-04-13 12:17:37', 8, 53),
+(28, 'Tech Gadgets', 139, 248.39, 'archive', 'limited', '2026-04-13 12:17:37', 31, 4),
+(29, 'Pirate''s Cove', 116, 171.49, 'active', 'standard', '2026-04-13 12:17:37', 22, 36),
+(30, 'Pirate''s Cove', 99, 862.36, 'archive', 'standard', '2026-04-13 12:17:37', 29, 9),
+(31, 'Circus Circus', 71, 351.78, 'active', 'standard', '2026-04-13 12:17:37', 30, 45),
+(32, 'Tech Gadgets', 149, 268.87, 'pending', 'limited', '2026-04-13 12:17:37', 7, 6),
+(33, 'Tech Gadgets', 125, 47.46, 'active', 'standard', '2026-04-13 12:17:37', 7, 6),
+(34, 'Circus Circus', 142, 202.36, 'pending', 'standard', '2026-04-13 12:17:37', 30, 45),
+(35, 'Steampunk Workshop', 23, 601.9, 'archive', 'limited', '2026-04-13 12:17:37', 26, 10);
 
 -- order
 INSERT INTO `order` (order_id, order_time, status, buyer_id) 
