@@ -164,6 +164,7 @@ def get_listing_analytics():
         category_id = request.args.get('category_id')
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
+        artist_id = request.args.get('artist_id')
 
         # Build date conditions for the LEFT JOIN so listings with no orders in the date range are still included
         date_clause = ''
@@ -190,6 +191,9 @@ def get_listing_analytics():
         if category_id:
             query += ' AND i.category_id = %s'
             params.append(category_id)
+        if artist_id:
+            query += ' AND l.artist_id = %s'
+            params.append(artist_id)
         query += ' GROUP BY l.listing_type'
         
         cursor.execute(query, params)
@@ -293,6 +297,42 @@ def get_trending():
         }), 200
     except Error as e:
         current_app.logger.error(f'Database error in get_trending: {e}')
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
+        
+# GET /analytics/items - top selling items by revenue and units sold
+@analytics.route('/analytics/items', methods=["GET"])
+def get_top_items():
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        current_app.logger.info('GET /analytics/items')
+        limit = int(request.args.get('limit', 10))
+        artist_id = request.args.get('artist_id')
+
+        query = '''
+            SELECT i.item_id, i.name AS item_name, c.name AS category,
+                   SUM(oi.price_at_purchase * oi.quantity) AS total_revenue,
+                   SUM(oi.quantity) AS total_units_sold,
+                   COUNT(DISTINCT o.order_id) AS total_orders
+            FROM order_items oi
+            JOIN listing l ON oi.listing_id = l.listing_id
+            JOIN item i ON l.item_id = i.item_id
+            LEFT JOIN category c ON i.category_id = c.category_id
+            JOIN `order` o ON oi.order_id = o.order_id
+            WHERE o.status != 'in cart'
+        '''
+        params = []
+        if artist_id:
+            query += ' AND l.artist_id = %s'
+            params.append(artist_id)
+        query += ' GROUP BY i.item_id, i.name, c.name ORDER BY total_revenue DESC LIMIT %s'
+        params.append(limit)
+
+        cursor.execute(query, params)
+        return jsonify(cursor.fetchall()), 200
+    except Error as e:
+        current_app.logger.error(f'Database error in get_top_items: {e}')
         return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()

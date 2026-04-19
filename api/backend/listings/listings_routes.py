@@ -19,15 +19,20 @@ def get_listings():
         max_price = request.args.get('max_price')
         category = request.args.get('category') # NEW!!
 
-        # NEW!! - added 2 parts
         query = '''
             SELECT l.listing_id, l.title, l.quantity, l.price, l.status, l.listing_type, l.post_time,
-                    l.item_id, l.artist_id, i.name AS item_name, i.image_link, i.size,
-                    u.username AS artist_username, c.name AS category_name
+                l.item_id, l.artist_id, i.name AS item_name, i.image_link, i.description, i.size,
+                c.name AS category,
+                u.username AS artist_username,
+                COALESCE(SUM(oi.price_at_purchase * oi.quantity), 0) AS total_sales,
+                COALESCE(lk.like_count, 0) AS like_count
             FROM listing l
             JOIN item i ON l.item_id = i.item_id
-            JOIN user u ON l.artist_id = u.user_id
             LEFT JOIN category c ON i.category_id = c.category_id
+            JOIN user u ON l.artist_id = u.user_id
+            LEFT JOIN order_items oi ON oi.listing_id = l.listing_id
+            LEFT JOIN (SELECT listing_id, COUNT(*) AS like_count FROM likes GROUP BY listing_id
+                ) lk ON lk.listing_id = l.listing_id
             WHERE 1 = 1
         '''
         params = []
@@ -52,6 +57,8 @@ def get_listings():
         if max_price:
             query += ' AND l.price <= %s'
             params.append(max_price) 
+
+        query += ' GROUP BY l.listing_id, l.title, l.quantity, l.price, l.status, l.listing_type, l.post_time, l.item_id, l.artist_id, i.name, i.image_link, i.description, i.size, c.name, u.username, lk.like_count'
         query += ' ORDER BY l.post_time DESC'
 
         cursor.execute(query, params)
@@ -96,12 +103,12 @@ def get_listing(listing_id):
         current_app.logger.info(f'GET /listings/{listing_id}') 
         cursor.execute('''
             SELECT l.listing_id, l.title, l.quantity, l.price, l.status, l.listing_type, l.post_time,
-                    l.item_id, l.artist_id, i.name as item_name, i.description, i.size, i.image_link,
-                    u.username AS artist_username, a.is_verified
+                l.item_id, l.artist_id, i.name AS item_name, i.image_link, i.description, i.size,
+                c.name AS category, u.username AS artist_username
             FROM listing l
-            JOIN item i on l.item_id = i.item_id
-            JOIN user u on l.artist_id = u.user_id
-            JOIN artist a ON l.artist_id = a.artist_id
+            JOIN item i ON l.item_id = i.item_id
+            LEFT JOIN category c ON i.category_id = c.category_id
+            JOIN user u ON l.artist_id = u.user_id
             WHERE l.listing_id = %s
         ''', (listing_id,))
         listing = cursor.fetchone()  
