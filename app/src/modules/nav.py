@@ -91,7 +91,7 @@ def artist_listings_nav():
     st.sidebar.page_link("pages/32_Artist_Listings.py", label="Artist Listings", icon="🎨")
 
 def create_item_listings_nav():
-    st.sidebar.page_link("pages/33_Create_Item_LIsting.py", label="New Items / Listings", icon="➕")
+    st.sidebar.page_link("pages/33_Create_Item_Listing.py", label="New Items / Listings", icon="➕")
 
 
 # ---- Role: usaid_worker (sample/demo, retained as backup) -------------------
@@ -146,7 +146,7 @@ def SideBarLinks(show_home=False):
     The role is stored in st.session_state when the user logs in on Home.py.
     """
 
-    # Logo appears at the top of the sidebar on every page
+    # Logo appears at the top of the sidebar on every pages
     st.sidebar.image("assets/logo.png", width=150)
 
     # If no one is logged in, send them to the Home (login) page

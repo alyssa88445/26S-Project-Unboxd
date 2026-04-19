@@ -20,10 +20,12 @@ def get_listings():
 
         query = '''
             SELECT l.listing_id, l.title, l.quantity, l.price, l.status, l.listing_type, l.post_time,
-                    l.item_id, l.artist_id, i.name AS item_name, i.image_link, u.username AS artist_username
+                    l.item_id, l.artist_id, i.name AS item_name, i.image_link, i.size,
+                    u.username AS artist_username, c.name AS category_name
             FROM listing l
-            JOIN item i on l.item_id = i.item_id
-            JOIN user u on l.artist_id = u.user_id
+            JOIN item i ON l.item_id = i.item_id
+            JOIN user u ON l.artist_id = u.user_id
+            LEFT JOIN category c ON i.category_id = c.category_id
             WHERE 1 = 1
         '''
         params = []
