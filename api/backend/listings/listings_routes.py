@@ -17,13 +17,16 @@ def get_listings():
         artist_id = request.args.get('artist_id')
         min_price = request.args.get('min_price')
         max_price = request.args.get('max_price')
+        category = request.args.get('category') # NEW!!
 
+        # NEW!! - added 2 parts
         query = '''
             SELECT l.listing_id, l.title, l.quantity, l.price, l.status, l.listing_type, l.post_time,
-                    l.item_id, l.artist_id, i.name AS item_name, i.image_link, u.username AS artist_username
+                    l.item_id, l.artist_id, i.name AS item_name, i.image_link, u.username AS artist_username, c.name AS category_name
             FROM listing l
             JOIN item i on l.item_id = i.item_id
             JOIN user u on l.artist_id = u.user_id
+            LEFT JOIN category c ON i.category_id = c.category_id
             WHERE 1 = 1
         '''
         params = []
@@ -36,6 +39,9 @@ def get_listings():
         if category_id:
             query += ' AND i.category_id = %s'
             params.append(category_id)
+        if category: # NEW!!
+            query += ' AND c.name = %s'
+            params.append(category)
         if artist_id:
             query += ' AND l.artist_id = %s'
             params.append(artist_id)
@@ -223,4 +229,4 @@ def get_bids(listing_id):
         current_app.logger.error(f'Database error in get_bids: {e}')
         return jsonify({'error': str(e)}), 500
     finally:
-        cursor.close()      
+        cursor.close()
