@@ -66,12 +66,24 @@ def listing_analytics_nav():
         "pages/12_Listing_Analytics.py", label="Listing Analytics", icon="🗂️"
     )
 
-
 def top_sellers_trending_nav():
     st.sidebar.page_link(
         "pages/13_Top_Sellers_Trending.py", label="Top Sellers & Trending", icon="🔥"
     )
 
+# ---- Role: buyer (Katie Joy Gordon - Unboxd Persona 3)
+
+def buyer_home_nav():
+    st.sidebar.page_link("pages/20_Buyer_Home.py", label="Buyer Home", icon="🏠")
+
+def filter_listings_nav():
+    st.sidebar.page_link("pages/21_Filter_Listings.py", label="Filter Listings", icon="🔎")
+
+def view_listing_nav():
+    st.sidebar.page_link("pages/22_View_Listing_Info.py", label="View Listing Info", icon="📦")
+
+def view_seller_nav():
+    st.sidebar.page_link("pages/23_View_Seller_Verification.py", label="View Seller Verified", icon="✅")
 
 # ---- Role: artist (Tina Gordon - Unboxd Persona 4)
 
@@ -170,6 +182,12 @@ def SideBarLinks(show_home=False):
             marketer_dashboard_nav()
             listing_analytics_nav()
             top_sellers_trending_nav()
+
+        if st.session_state["role"] == "buyer":
+            buyer_home_nav()
+            filter_listings_nav()
+            view_listing_nav()
+            view_seller_nav()
 
         if st.session_state["role"] == "artist":
             artist_home_nav()
