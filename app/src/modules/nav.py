@@ -90,6 +90,9 @@ def artist_profile_nav():
 def artist_listings_nav():
     st.sidebar.page_link("pages/32_Artist_Listings.py", label="Artist Listings", icon="🎨")
 
+def create_item_listings_nav():
+    st.sidebar.page_link("pages/33_Create_Item_LIsting.py", label="New Items / Listings", icon="➕")
+
 
 # ---- Role: usaid_worker (sample/demo, retained as backup) -------------------
 
@@ -174,6 +177,7 @@ def SideBarLinks(show_home=False):
             artist_home_nav()
             artist_profile_nav()
             artist_listings_nav()
+            create_item_listings_nav()
 
         # - Sample/demo personas (retained as backup)
         if st.session_state["role"] == "pol_strat_advisor":
