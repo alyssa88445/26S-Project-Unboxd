@@ -87,11 +87,7 @@ def artist_listings_nav():
     st.sidebar.page_link("pages/32_Artist_Listings.py", label="Artist Listings", icon="🎨")
 
 def create_item_listings_nav():
-<<<<<<< Updated upstream
     st.sidebar.page_link("pages/33_Create_Item_Listing.py", label="New Items / Listings", icon="➕")
-=======
-    st.sidebar.page_link("pages/33_Create_Item_Listing.py", label="Add New Items / Listings", icon="➕")
->>>>>>> Stashed changes
 
 def artist_metrics_nav():
     st.sidebar.page_link("pages/35_Artist_Analytics.py", label="View Sales Analytics", icon="📈")

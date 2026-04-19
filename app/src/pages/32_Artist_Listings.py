@@ -37,7 +37,7 @@ df = pd.DataFrame(listings)
 # filters
 col1, col2, col3 = st.columns(3)
 with col1:
-    categories = ["All"] + sorted(df["category_name"].dropna().unique().tolist())
+    categories = ["All"] + sorted(df["category"].dropna().unique().tolist())
     selected_category = st.selectbox("Filter by category", categories)
 with col2:
     statuses = ["All"] + sorted(df["status"].dropna().unique().tolist())
@@ -48,7 +48,7 @@ with col3:
     sort_order = st.radio("Order", ["Descending", "Ascending"], horizontal=True)
 
 if selected_category != "All":
-    df = df[df["category_name"] == selected_category]
+    df = df[df["category"] == selected_category]
 if selected_status != "All":
     df = df[df["status"] == selected_status]
 
@@ -87,7 +87,7 @@ for _, listing in df.iterrows():
             st.subheader(listing.get("title", "Untitled"))
             st.caption(
                 f"Item: {listing.get('item_name', 'N/A')}  ·  "
-                f"Category: {listing.get('category_name', 'N/A')}  ·  "
+                f"Category: {listing.get('category', 'N/A')}  ·  "
                 f"Size: {listing.get('size', 'N/A')}  ·  "
                 f"Type: {listing.get('listing_type', 'N/A')}"
             )
