@@ -23,6 +23,24 @@ def get_artists():
         return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
+# GET /artists/{id}/items - get all items for an artist
+@artists.route("/artists/<int:artist_id>/items", methods=["GET"])
+def get_artist_items(artist_id):
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        current_app.logger.info(f'GET /artists/{artist_id}/items')
+        cursor.execute('''
+            SELECT i.item_id, i.name
+            FROM item i
+            WHERE i.artist_id = %s
+            ORDER BY i.name
+        ''', (artist_id,))
+        return jsonify(cursor.fetchall()), 200
+    except Error as e:
+        current_app.logger.error(f'Database error in get_artist_items: {e}')
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
 
 # GET /artists/{id} - return artist profile and verification status 
 @artists.route("/artists/<int:artist_id>", methods=["GET"])
