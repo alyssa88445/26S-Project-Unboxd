@@ -43,7 +43,7 @@ with col2:
     statuses = ["All"] + sorted(df["status"].dropna().unique().tolist())
     selected_status = st.selectbox("Filter by status", statuses)
 with col3:
-    sortable = [c for c in ["post_time", "price", "total_sales", "quantity"] if c in df.columns]
+    sortable = [c for c in ["post_time", "price", "total_salves", "quantity"] if c in df.columns]
     sort_by = st.selectbox("Sort by", sortable)
     sort_order = st.radio("Order", ["Descending", "Ascending"], horizontal=True)
 

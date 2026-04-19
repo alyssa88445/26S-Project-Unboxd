@@ -17,7 +17,7 @@ def get_listings():
         artist_id = request.args.get('artist_id')
         min_price = request.args.get('min_price')
         max_price = request.args.get('max_price')
-        category = request.args.get('category') # NEW!!
+        category = request.args.get('category')
 
         query = '''
             SELECT l.listing_id, l.title, l.quantity, l.price, l.status, l.listing_type, l.post_time,
