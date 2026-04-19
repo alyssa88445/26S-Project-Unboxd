@@ -85,7 +85,7 @@ if st.button("Login as Buyer",
              type="primary",
              use_container_width=True):
     st.session_state["authenticated"] = True
-    st.session_state["role"] = "Buyer"
+    st.session_state["role"] = "buyer"
     st.session_state["first_name"] = "Katie"
     logger.info("Logging in as Buyer (Katie Joy)")
     st.switch_page("pages/20_Buyer_Home.py")
