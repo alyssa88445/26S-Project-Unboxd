@@ -14,14 +14,14 @@ API_BASE = "http://web-api:4000"
 
 st.title("My Listings")
 
-# --- Buttons ---
+# Access button to create new item or listing
 if st.button(" + Create New Item or Listing",
              use_container_width=True):
     st.switch_page("pages/33_Create_Item_Listing.py")
 
-# --- Fetch listings ---
+# Fetch listings
 try:
-    response = requests.get(f"{API_BASE}/artists/{artist_id}/listings", timeout=10)
+    response = requests.get(f"{API_BASE}/listings", params={"artist_id": artist_id}, timeout=10)
     response.raise_for_status()
     listings = response.json()
 except requests.exceptions.RequestException as e:
@@ -34,7 +34,7 @@ if not listings:
 
 df = pd.DataFrame(listings)
 
-# --- Filters & Sorting ---
+# filters
 col1, col2, col3 = st.columns(3)
 with col1:
     categories = ["All"] + sorted(df["category"].dropna().unique().tolist())
@@ -56,7 +56,7 @@ df = df.sort_values(by=sort_by, ascending=(sort_order == "Ascending"))
 st.caption(f"Showing {len(df)} listing(s)")
 st.divider()
 
-# --- Status badge helper ---
+# Status badge helper 
 status_badges = {
     "active":   "✅ Active",
     "pending":  "⏳ Pending",
@@ -66,7 +66,7 @@ status_badges = {
     "approved": "✅ Approved"
 }
 
-# --- Display listings ---
+# Display listings
 for _, listing in df.iterrows():
     with st.container():
         col1, col2 = st.columns([1, 3])
@@ -109,5 +109,11 @@ for _, listing in df.iterrows():
                 f"{status_badges.get(status, status)}  ·  "
                 f"Listed: {str(listing.get('post_time', ''))[:10]}"
             )
+
+            # Button to view listings
+            if st.button("View / Edit", key=f"listing_{listing['listing_id']}"):
+                st.session_state["selected_listing_id"] = listing["listing_id"]
+                st.session_state["selected_item_id"] = listing["item_id"]
+                st.switch_page("pages/34_Listing_Detail.py")
 
         st.divider()

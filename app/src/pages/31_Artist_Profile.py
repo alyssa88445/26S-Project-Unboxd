@@ -11,7 +11,7 @@ SideBarLinks()
 artist_id = st.session_state.get("artist_id", 1)
 API_BASE = "http://web-api:4000"
 
-# --- Fetch artist profile ---
+# Fetch artist profile
 try:
     response = requests.get(f"{API_BASE}/artists/{artist_id}", timeout=10)
     response.raise_for_status()
@@ -20,7 +20,7 @@ except requests.exceptions.RequestException as e:
     st.error(f"Could not reach API: {e}")
     st.stop()
 
-# --- Fetch primary email ---
+# Fetch primary email
 try:
     email_resp = requests.get(f"{API_BASE}/artists/{artist_id}/email", timeout=10)
     email_data = email_resp.json()
@@ -28,7 +28,7 @@ try:
 except requests.exceptions.RequestException:
     current_email = ""
 
-# --- Header ---
+#
 col1, col2 = st.columns([1, 4])
 with col1:
     if artist.get("photo_link"):
@@ -51,7 +51,7 @@ with col2:
 
 st.divider()
 
-# --- Display + Edit Form ---
+# display artist profile form
 st.subheader("Profile Information")
 
 with st.form("profile_form"):
