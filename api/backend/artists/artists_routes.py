@@ -209,3 +209,139 @@ def update_artist_email(artist_id):
         return jsonify({'error': str(e)}), 500
     finally:
         cursor.close()
+        
+# GET /artists/{id}/items - get all items for an artist
+@artists.route("/artists/<int:artist_id>/items", methods=["GET"])
+def get_artist_items(artist_id):
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        current_app.logger.info(f'GET /artists/{artist_id}/items')
+        cursor.execute('''
+            SELECT i.item_id, i.name
+            FROM item i
+            WHERE i.artist_id = %s
+            ORDER BY i.name
+        ''', (artist_id,))
+        return jsonify(cursor.fetchall()), 200
+    except Error as e:
+        current_app.logger.error(f'Database error in get_artist_items: {e}')
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
+
+# GET /artists/{id}/listings - get all listings with stats
+@artists.route("/artists/<int:artist_id>/listings", methods=["GET"])
+def get_artist_listings(artist_id):
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        current_app.logger.info(f'GET /artists/{artist_id}/listings')
+        cursor.execute('''
+            SELECT
+                l.listing_id,
+                l.title,
+                l.price,
+                l.quantity,
+                l.status,
+                l.listing_type,
+                l.post_time,
+                i.name AS item_name,
+                i.image_link,
+                i.description,
+                i.size,
+                c.name AS category,
+                COUNT(DISTINCT lk.user_id) AS like_count,
+                COALESCE(SUM(oi.quantity * oi.price_at_purchase), 0) AS total_sales
+            FROM listing l
+            JOIN item i ON l.item_id = i.item_id
+            LEFT JOIN category c ON i.category_id = c.category_id
+            LEFT JOIN likes lk ON l.listing_id = lk.listing_id
+            LEFT JOIN order_items oi ON l.listing_id = oi.listing_id
+            WHERE l.artist_id = %s
+            GROUP BY
+                l.listing_id, l.title, l.price, l.quantity, l.status,
+                l.listing_type, l.post_time, i.name, i.image_link,
+                i.description, i.size, c.name
+            ORDER BY l.post_time DESC
+        ''', (artist_id,))
+        return jsonify(cursor.fetchall()), 200
+    except Error as e:
+        current_app.logger.error(f'Database error in get_artist_listings: {e}')
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
+
+# POST /artists/{id}/items - create a new item
+@artists.route("/artists/<int:artist_id>/items", methods=["POST"])
+def create_item(artist_id):
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        current_app.logger.info(f'POST /artists/{artist_id}/items')
+        data = request.get_json()
+
+        required = ['name', 'category_id']
+        for field in required:
+            if field not in data:
+                return jsonify({'error': f'{field} is required'}), 400
+
+        cursor.execute('''
+            INSERT INTO item (name, description, size, image_link, artist_id, category_id)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        ''', (
+            data.get('name'),
+            data.get('description'),
+            data.get('size'),
+            data.get('image_link'),
+            artist_id,
+            data.get('category_id')
+        ))
+        get_db().commit()
+        return jsonify({'message': 'Item created', 'item_id': cursor.lastrowid}), 201
+    except Error as e:
+        current_app.logger.error(f'Database error in create_item: {e}')
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
+
+# POST /artists/{id}/listings - create a new listing
+@artists.route("/artists/<int:artist_id>/listings", methods=["POST"])
+def create_listing(artist_id):
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        current_app.logger.info(f'POST /artists/{artist_id}/listings')
+        data = request.get_json()
+
+        required = ['title', 'price', 'quantity', 'item_id', 'listing_type']
+        for field in required:
+            if field not in data:
+                return jsonify({'error': f'{field} is required'}), 400
+
+        cursor.execute('''
+            INSERT INTO listing (title, quantity, price, status, listing_type, item_id, artist_id)
+            VALUES (%s, %s, %s, 'pending', %s, %s, %s)
+        ''', (
+            data.get('title'),
+            data.get('quantity'),
+            data.get('price'),
+            data.get('listing_type'),
+            data.get('item_id'),
+            artist_id
+        ))
+        get_db().commit()
+        return jsonify({'message': 'Listing created', 'listing_id': cursor.lastrowid}), 201
+    except Error as e:
+        current_app.logger.error(f'Database error in create_listing: {e}')
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()
+
+# GET /categories - for the dropdown
+@artists.route("/categories", methods=["GET"])
+def get_categories():
+    cursor = get_db().cursor(dictionary=True)
+    try:
+        cursor.execute('SELECT category_id, name FROM category ORDER BY name')
+        return jsonify(cursor.fetchall()), 200
+    except Error as e:
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cursor.close()

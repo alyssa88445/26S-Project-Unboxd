@@ -87,8 +87,8 @@ def artist_profile_nav():
     )
 
 
-def map_demo_nav():
-    st.sidebar.page_link("pages/52_Map_Demo.py", label="Map Demonstration", icon="🗺️")
+def artist_listings_nav():
+    st.sidebar.page_link("pages/32_Artist_Listings.py", label="Artist Listings", icon="🎨")
 
 
 # ---- Role: usaid_worker (sample/demo, retained as backup) -------------------
@@ -172,7 +172,8 @@ def SideBarLinks(show_home=False):
 
         if st.session_state["role"] == "artist":
             artist_home_nav()
-            artist_applications_nav()
+            artist_profile_nav()
+            artist_listings_nav()
 
         # - Sample/demo personas (retained as backup)
         if st.session_state["role"] == "pol_strat_advisor":

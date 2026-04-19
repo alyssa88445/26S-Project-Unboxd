@@ -100,7 +100,7 @@ if st.button("Login as Artist",
              type="primary",
              use_container_width=True):
     st.session_state["authenticated"] = True
-    st.session_state["role"] = "Artist"
+    st.session_state["role"] = "artist"
     st.session_state["first_name"] = "Tina"
     st.session_state["artist_id"] = "1" 
     logger.info("Logging in as Artist (Tina Gordon)")
