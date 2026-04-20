@@ -4,6 +4,8 @@ This is the repo for the Dr. Fontenot's Spring 2026 CS 3200 Course Project.
 
 It includes a brief overview of Unboxd, the backend routing and rest api in api/, and the visualization/frontend in app/. Our schema is in database-files. 
 
+This is the link to the demo video: https://drive.google.com/file/d/1Nu7hJ7YIjXaKkktru_eJwfGgLwbN0VHE/view?usp=sharing
+
 ## Overview of Unboxd 
 
 Unboxd is a data driven e-commerce platform dedicated to connecting the artists and collectors of the blind box community. Our app seeks to connect collectors with limited-collection blind boxes and provide local artists with a centralized platform to better understand their audience and reach their customers. On our app, Collectors can browse a large catalog of blind boxes and either like or purchase those that catch their eye. By collecting and analyzing these buyer behaviors, Unboxd will enable sellers to better manage inventory, streamline their sales process, and be more equipped to handle the inherent volatility of the blind-box trend cycles. 
